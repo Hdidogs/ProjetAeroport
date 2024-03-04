@@ -1,6 +1,6 @@
 <?php
 
-class Pilote extends User {
+class AgentVol extends User {
     private $compagnie;
     private $fonction;
 
