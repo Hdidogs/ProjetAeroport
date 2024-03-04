@@ -1,11 +1,13 @@
 <?php
 
-abstract class User
-{
+include "../../bdd/SQLConnexion.php";
+
+abstract class User {
     private $id;
     private $nom;
     private $prenom;
     private $mail;
+    private $mdp;
     private $date;
     private $ville;
 
@@ -90,6 +92,22 @@ abstract class User
     /**
      * @return mixed
      */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+
+    /**
+     * @param mixed $mdp
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getDate()
     {
         return $this->date;
@@ -139,10 +157,10 @@ abstract class User
             $_SESSION['prenom'] = $userprenom;
             $_SESSION['mail'] = $usermail;
 
-            header("Location: ../../html/index.php");
+            header("Location: ../../vue/index.php");
             return true;
         } else {
-            header("Location: ../../html/connexion.html");
+            header("Location: ../../vue/user/connexion.php");
             return false;
         }
     }
