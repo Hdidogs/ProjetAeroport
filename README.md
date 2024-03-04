@@ -1,7 +1,5 @@
 # Flight Management System
 
-Bienvenue dans le projet de gestion des vols pour une compagnie aérienne, où vous intégrez l'équipe de développement d'une entreprise de vol. Ce système vous permettra de gérer l'ensemble des vols d'un aéroport, avec des fonctionnalités telles que l'inscription des utilisateurs, la réservation de vols, la gestion des avions et des pilotes, et bien plus encore.
-
 ## Objectifs du Projet
 
 ### Inscription et Connexion des Utilisateurs
