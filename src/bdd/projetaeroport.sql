@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 04 mars 2024 à 15:28
--- Version du serveur : 8.2.0
--- Version de PHP : 8.2.13
+-- Généré le : lun. 04 mars 2024 à 22:00
+-- Version du serveur : 8.0.31
+-- Version de PHP : 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -188,10 +188,12 @@ CREATE TABLE IF NOT EXISTS `vol` (
   `ref_companie` int NOT NULL,
   `ref_destination` int NOT NULL,
   `ref_avion` int NOT NULL,
+  `ref_pilote` int NOT NULL,
   PRIMARY KEY (`id_vol`),
   KEY `fk_vol_companie` (`ref_companie`),
   KEY `fk_vol_avion` (`ref_avion`),
-  KEY `fk_vol_destination` (`ref_destination`)
+  KEY `fk_vol_destination` (`ref_destination`),
+  KEY `fk_vol_user` (`ref_pilote`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -242,7 +244,8 @@ ALTER TABLE `ville`
 ALTER TABLE `vol`
   ADD CONSTRAINT `fk_vol_avion` FOREIGN KEY (`ref_avion`) REFERENCES `avion` (`id_avion`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_vol_companie` FOREIGN KEY (`ref_companie`) REFERENCES `companie` (`id_companie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `fk_vol_destination` FOREIGN KEY (`ref_destination`) REFERENCES `destination` (`id_destination`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_vol_destination` FOREIGN KEY (`ref_destination`) REFERENCES `destination` (`id_destination`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_vol_user` FOREIGN KEY (`ref_pilote`) REFERENCES `user` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

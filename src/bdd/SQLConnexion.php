@@ -2,7 +2,7 @@
 <?php
 
 
-class Projetaeroport{
+class SQLConnexion{
     private $bdd;
     private $serveur = "localhost" ;
     private $nomBdd = "projetaeroport" ;
@@ -10,8 +10,7 @@ class Projetaeroport{
     private $password = "";
 
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->bdd =  new PDO('mysql:host='.$this->serveur.';dbname='.$this->nomBdd, $this->username, $this->password);
     }
 
