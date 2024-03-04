@@ -14,8 +14,7 @@ class SQLConnexion{
         $this->bdd =  new PDO('mysql:host='.$this->serveur.';dbname='.$this->nomBdd, $this->username, $this->password);
     }
 
-    public function bdd(){
+    public function conbdd(){
        return $this->bdd;
     }
-
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 04 mars 2024 à 22:00
+-- Généré le : lun. 04 mars 2024 à 22:30
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -40,11 +40,11 @@ CREATE TABLE IF NOT EXISTS `avion` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `companie`
+-- Structure de la table `compagnie`
 --
 
-DROP TABLE IF EXISTS `companie`;
-CREATE TABLE IF NOT EXISTS `companie` (
+DROP TABLE IF EXISTS `compagnie`;
+CREATE TABLE IF NOT EXISTS `compagnie` (
   `id_companie` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
   `numero` varchar(50) NOT NULL,
@@ -118,12 +118,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `nom` varchar(100) NOT NULL,
   `prenom` varchar(100) NOT NULL,
   `mail` varchar(150) NOT NULL,
+  `mdp` varchar(200) NOT NULL,
   `date` date NOT NULL,
   `ville` varchar(100) NOT NULL,
   `fonction` varchar(150) NOT NULL DEFAULT 'Client',
-  `ref_companie` int DEFAULT NULL,
+  `ref_compagnie` int DEFAULT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `fk_user_companie` (`ref_companie`)
+  KEY `fk_user_companie` (`ref_compagnie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -185,12 +186,12 @@ CREATE TABLE IF NOT EXISTS `vol` (
   `heure_arr` time NOT NULL,
   `prix` float NOT NULL,
   `classe` varchar(100) NOT NULL,
-  `ref_companie` int NOT NULL,
+  `ref_compagnie` int NOT NULL,
   `ref_destination` int NOT NULL,
   `ref_avion` int NOT NULL,
   `ref_pilote` int NOT NULL,
   PRIMARY KEY (`id_vol`),
-  KEY `fk_vol_companie` (`ref_companie`),
+  KEY `fk_vol_companie` (`ref_compagnie`),
   KEY `fk_vol_avion` (`ref_avion`),
   KEY `fk_vol_destination` (`ref_destination`),
   KEY `fk_vol_user` (`ref_pilote`)
@@ -216,7 +217,7 @@ ALTER TABLE `destination`
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `fk_user_companie` FOREIGN KEY (`ref_companie`) REFERENCES `companie` (`id_companie`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_user_companie` FOREIGN KEY (`ref_compagnie`) REFERENCES `compagnie` (`id_companie`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `userconge`
@@ -243,7 +244,7 @@ ALTER TABLE `ville`
 --
 ALTER TABLE `vol`
   ADD CONSTRAINT `fk_vol_avion` FOREIGN KEY (`ref_avion`) REFERENCES `avion` (`id_avion`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `fk_vol_companie` FOREIGN KEY (`ref_companie`) REFERENCES `companie` (`id_companie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_vol_companie` FOREIGN KEY (`ref_compagnie`) REFERENCES `compagnie` (`id_companie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_vol_destination` FOREIGN KEY (`ref_destination`) REFERENCES `destination` (`id_destination`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fk_vol_user` FOREIGN KEY (`ref_pilote`) REFERENCES `user` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
