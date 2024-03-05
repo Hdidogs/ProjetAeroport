@@ -407,7 +407,7 @@ class Vol
     }
 
     public static function getVolsParDateEtNombreBillet($date, $nombreBillet)
-    {x
+    {
         $bdd = SQLConnexion::getInstance();
         $req = $bdd->prepare('SELECT * FROM vol WHERE date = :date AND nombreBillet = :nombreBillet');
         $req->execute(array('date' => $date, 'nombreBillet' => $nombreBillet));
@@ -470,5 +470,4 @@ class Vol
         return $req->fetchAll();
     }
 }
-
 ?>
