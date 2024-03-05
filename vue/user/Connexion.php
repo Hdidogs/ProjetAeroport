@@ -13,7 +13,7 @@
             <br>
             <a href="#">Mot de Passe Oublié</a>
             <br>
-            <a href="Inscription.php">S'inscrire</a>
+            <a href="Inscription.php">Vous n'avez pas de compte ?</a>
             <br>
             <input type="submit" name="connexion" value="Connexion">
         </form>
