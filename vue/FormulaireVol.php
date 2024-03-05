@@ -90,16 +90,28 @@
 
  <label for="nombreBillet">Nombre de billets:</label>
  <input type="number" name="nombreBillet" id="nombreBillet" min="1" value="1" required>
- <button type="button" onclick="increaseBillet()">+</button><br>
+ <button type="button" onclick="increaseBillet()">+</button>
+ <button type="button" onclick="decreaseBillet()">-</button><br>
+<br>
 
  <input type="submit" value="Soumettre">
  </form>
 
  <script>
+  
  function increaseBillet() {
   var input = document.getElementById("nombreBillet");
   input.value = parseInt(input.value) + 1;
  }
+
+ function decreaseBillet() {
+ var input = document.getElementById("nombreBillet");
+ var value = parseInt(input.value);
+ if (value > 1) {
+  input.value = value - 1;
+ }
+}
+</script>
  </script>
 </body>
 </html>
