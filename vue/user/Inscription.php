@@ -11,7 +11,7 @@
         <br>
         <input type="text" name="prenom" placeholder="Prenom" required>
         <br>
-        <input type="text" name="ville" placeholder="Adresse Mail" required>
+        <input type="text" name="ville" placeholder="Ville" required>
         <br>
         <input type="date" name="date" placeholder="Date de Naissance" required>
         <br>
@@ -23,7 +23,7 @@
         <br>
         <a href="Connexion.php">Vous avez déjà un compte ?</a>
         <br>
-        <input type="submit" name="inscription" value="Inscription">
+        <input type="submit" name="inscriptionclient" value="Inscription">
     </form>
 </div>
 </body>
