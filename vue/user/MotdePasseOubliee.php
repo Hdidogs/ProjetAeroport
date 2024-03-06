@@ -1,17 +1,13 @@
 <?php
+include 'src/bdd/SQLConnexion.php';
+include 'src/model/user/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- // Get the email address entered by the user
+
  $email = $_POST['email'];
-
- // TODO: Validate the email address and check if it exists in the database
-
- // If the email is valid and exists, send a password reset link to the user's email
-
- // Redirect the user to a confirmation page
  header('Location:  resetPasswordUser.php');
  exit;
- 
+
 }
 ?>
 
