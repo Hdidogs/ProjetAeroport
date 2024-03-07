@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 04 mars 2024 à 22:30
--- Version du serveur : 8.0.31
--- Version de PHP : 8.0.26
+-- Généré le : jeu. 07 mars 2024 à 13:19
+-- Version du serveur : 8.2.0
+-- Version de PHP : 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,9 +75,9 @@ DROP TABLE IF EXISTS `destination`;
 CREATE TABLE IF NOT EXISTS `destination` (
   `id_destination` int NOT NULL AUTO_INCREMENT,
   `nom_aeroport` varchar(100) NOT NULL,
-  `ref_pays` int NOT NULL,
+  `ref_ville` int NOT NULL,
   PRIMARY KEY (`id_destination`),
-  KEY `fk_destination_pays` (`ref_pays`)
+  KEY `fk_destination_pays` (`ref_ville`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -125,7 +125,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ref_compagnie` int DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `fk_user_companie` (`ref_compagnie`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nom`, `prenom`, `mail`, `mdp`, `date`, `ville`, `fonction`, `ref_compagnie`) VALUES
+(1, 'ROHEE', 'Alexis', 'Hdidogs.pro@gmail.com', '$2y$10$wP/o6uwMBW9LaoU30uMss.dcT73jSr4.OZkDMgk5yJBte9xe4/U.i', '2004-12-24', 'DOMONT', 'Client', NULL);
 
 -- --------------------------------------------------------
 
@@ -211,7 +218,7 @@ ALTER TABLE `avion`
 -- Contraintes pour la table `destination`
 --
 ALTER TABLE `destination`
-  ADD CONSTRAINT `fk_destination_pays` FOREIGN KEY (`ref_pays`) REFERENCES `pays` (`id_pays`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_destination_ville` FOREIGN KEY (`ref_ville`) REFERENCES `ville` (`id_ville`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `user`
