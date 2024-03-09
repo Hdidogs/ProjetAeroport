@@ -21,13 +21,13 @@ $ajoutville = $req->fetchAll();
 <br>
 <input type="text" name="nomAeroport" placeholder="Aeroport" required>
     <br>
-    <select name="pays" id="">
+    <select name="pays" id="py">
         <option>Pays<?php foreach ($ajoutpays as $pays): ?>
         <option value="<?php echo $pays['id_pays']; ?>"><?php echo $pays['nom']; ?></option>
         <?php endforeach;?>
     </select>
     <br>
-    <select name="ville">
+    <select name="ville" id="vil">
         <option>Ville<?php foreach ($ajoutville as $ville): ?>
         <option value="<?php echo $ville['id_ville']; ?>"><?php echo $ville['nom']; ?></option>
         <?php endforeach;?>

@@ -11,8 +11,8 @@ $conn = new SQLConnexion();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des données du formulaire
     $nomAeroport = $_POST["nomAeroport"];
-    $pays = $_POST["pays"];
-    $ville = $_POST["ville"];
+    $pays = $_POST["nompays"];
+    $ville = $_POST["nomville"];
 
     // Insérer les données dans la base de données
     $query = $conn->conbdd()->prepare("INSERT INTO pays (nom) VALUES (:nom)");
