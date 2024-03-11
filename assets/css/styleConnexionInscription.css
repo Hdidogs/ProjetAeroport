@@ -76,7 +76,6 @@ form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 50px;
     height: 100%;
     text-align: center;
 }
@@ -249,4 +248,16 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
+}
+
+.left-panel-active h1 {
+    margin-top: 40px;
+}
+
+.left-panel-active input {
+    margin-top: 40px;
+}
+
+.mdpConnexion {
+    margin-top: 120px;
 }
