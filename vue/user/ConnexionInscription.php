@@ -7,52 +7,54 @@
 </head>
 <body>
 <div class="connexion">
-    <form method="post" action="../../src/controleur/TraitementUser.php">
-        <div class="container" id="container">
-            <div class="right-panel-active" id="right-panel-active">
-                <div class="form-container sign-up-container">
+    <div class="container" id="container">
+        <div class="right-panel-active" id="right-panel-active">
+            <div class="form-container sign-up-container">
+                <form method="post" action="../../src/controleur/TraitementUser.php">
                     <h1>Crée un compte</h1>
-                    <input type="text" name="nom" placeholder="Nom">
-                    <input type="text" name="prenom" placeholder="Prenom">
-                    <input type="text" name="ville" placeholder="Ville">
-                    <input type="date" name="date" placeholder="Date de Naissance">
-                    <input type="email" name="mail" placeholder="Adresse Mail">
-                    <input type="password" name="mdp" placeholder="Mot de Passe">
-                    <input type="password" name="remdp" placeholder="Confirmer Mot de Passe">
+                    <input type="text" name="nom" placeholder="Nom" required>
+                    <input type="text" name="prenom" placeholder="Prenom" required>
+                    <input type="text" name="ville" placeholder="Ville" required>
+                    <input type="date" name="date" placeholder="Date de Naissance" required>
+                    <input type="email" name="mail" placeholder="Adresse Mail" required>
+                    <input type="password" name="mdp" placeholder="Mot de Passe" required>
+                    <input type="password" name="remdp" placeholder="Confirmer Mot de Passe" required>
                     <button type="submit" name="inscriptionclient">Inscription</button>
-                </div>
+                </form>
             </div>
+        </div>
 
-            <div class="left-panel-active" id="left-panel-active">
-                <div class="form-container sign-in-container">
+        <div class="left-panel-active" id="left-panel-active">
+            <div class="form-container sign-in-container">
+                <form method="post" action="../../src/controleur/TraitementUser.php">
                     <h1>Connexion</h1>
-                    <input type="email" name="mail" placeholder="Adresse Mail" />
-                    <input type="password" name="mdp" placeholder="Mot De Passe" />
+                    <input type="email" name="mail" placeholder="Adresse Mail" required/>
+                    <input type="password" name="mdp" placeholder="Mot De Passe" required/>
                     <div class="mdpConnexion">
                         <a href="MotdePasseOubliee.php">Mot de passe oublié ?</a>
                         <br>
                         <br>
                         <button type="submit" name="connexion">Connexion</button>
                     </div>
-                </div>
+                </form>
             </div>
+        </div>
 
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                        <h1>Vous êtes de retour ?</h1>
-                        <p>Cliquez ici pour vous connecter</p>
-                        <button type="button" class="ghost" id="signIn">Connexion</button>
-                    </div>
-                    <div class="overlay-panel overlay-right">
-                        <h1>Vous êtes nouveaux ?</h1>
-                        <p>Cliquez ici pour nous rejoindre !</p>
-                        <button type="button" class="ghost" id="signUp">Inscription</button>
-                    </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Vous êtes de retour ?</h1>
+                    <p>Cliquez ici pour vous connecter</p>
+                    <button type="button" class="ghost" id="signIn">Connexion</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Vous êtes nouveaux ?</h1>
+                    <p>Cliquez ici pour nous rejoindre !</p>
+                    <button type="button" class="ghost" id="signUp">Inscription</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <script>
