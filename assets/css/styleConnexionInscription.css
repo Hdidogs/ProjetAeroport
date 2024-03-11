@@ -61,6 +61,14 @@ button:active {
     transform: scale(0.95);
 }
 
+button:hover {
+    transform: scale(0.95);
+}
+
+a:hover {
+    transform: scale(0.95);
+}
+
 button:focus {
     outline: none;
 }
@@ -81,11 +89,16 @@ form {
 }
 
 input {
-    background-color: #eee;
+    background-color: #eee; /* eee */
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
-    width: 100%;
+    width: 80%;
 }
 
 .container {
@@ -260,4 +273,7 @@ footer a {
 
 .mdpConnexion {
     margin-top: 120px;
+}
+
+.overlay:active {
 }
