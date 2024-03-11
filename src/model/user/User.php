@@ -160,7 +160,7 @@ abstract class User {
             header("Location: ../../vue/index.php");
             return true;
         } else {
-            header("Location: ../../vue/user/connexion.php");
+            header("Location: ../../vue/user/ConnexionInscription.php");
             return false;
         }
     }
