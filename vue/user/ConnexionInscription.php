@@ -28,9 +28,12 @@
                     <h1>Connexion</h1>
                     <input type="email" name="mail" placeholder="Adresse Mail" />
                     <input type="password" name="mdp" placeholder="Mot De Passe" />
-                    <a href="MotdePasseOubliee.php">Mot de passe oublié ?</a>
-                    <br>
-                    <button type="submit" name="connexion">Connexion</button>
+                    <div class="mdpConnexion">
+                        <a href="MotdePasseOubliee.php">Mot de passe oublié ?</a>
+                        <br>
+                        <br>
+                        <button type="submit" name="connexion">Connexion</button>
+                    </div>
                 </div>
             </div>
 
