@@ -1,12 +1,3 @@
-<?php
-include "../src/bdd/SQLConnexion.php";
-
-$conn = new SQLConnexion();
-
-$req = $conn->conbdd()->query("SELECT * FROM listvol");
-$res = $req->fetchAll();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -41,6 +32,7 @@ $res = $req->fetchAll();
         </div>
     </div>
 
+    
         <div style="left: 496px; top: 850px; position: absolute; color: black; font-size: 38px; font-weight: 400; word-wrap: break-word">Réserver dès maintenant</div>
 
         <div style="left: 153px; top: 592px; position: absolute; color: white; font-size: 35px; font-weight: 400; word-wrap: break-word">Parking</div>
