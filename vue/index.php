@@ -1,3 +1,12 @@
+<?php
+include "../src/bdd/SQLConnexion.php";
+
+$conn = new SQLConnexion();
+
+$req = $conn->conbdd()->query("SELECT * FROM listvol");
+$res = $req->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -12,8 +21,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 </head>
 <body>
-
+    <table id="volList">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Heure de Départ</th>
+                <th>Heure d'arriver</th>
+                <th>Nom de l'Aéroport</th>
+                <th>Nom de la compagnie</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($res as $vol) {
+            ?>
+            <tr>
+                <td><?=$vol['date']?></td>
+                <td><?=$vol['heure_dep']?></td>
+                <td><?=$vol['heure_arr']?></td>
+                <td><?=$vol['nom_aeroport']?></td>
+                <td><?=$vol['nom']?></td>
+            </tr>
+            <?php
+                }
+            ?>
+        </tbody>
+    </table>
+    <script>
+        $(document).ready( function () {
+            $('#volList').DataTable();
+        } );
+    </script>
 </body>
 </html>
