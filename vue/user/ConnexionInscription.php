@@ -43,12 +43,12 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Vous êtes de retour ?</h1>
+                    <h2>Vous êtes de retour ?</h2>
                     <p>Cliquez ici pour vous connecter</p>
                     <button type="button" class="ghost" id="signIn">Connexion</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Vous êtes nouveaux ?</h1>
+                    <h2>Vous êtes nouveaux ?</h2>
                     <p>Cliquez ici pour nous rejoindre !</p>
                     <button type="button" class="ghost" id="signUp">Inscription</button>
                 </div>
