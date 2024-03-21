@@ -1,7 +1,5 @@
 <?php
 
-include "../../bdd/SQLConnexion.php";
-
 abstract class User {
     private $id;
     private $nom;
