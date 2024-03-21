@@ -1,5 +1,4 @@
 <?php
-
 abstract class User {
     private $id;
     private $nom;
@@ -141,6 +140,7 @@ abstract class User {
         $res->execute(['mail'=>$mail]);
         $user = $res -> fetch();
 
+
         $id = $user['id_user'];
         $usermdp = $user['mdp'];
         $usernom = $user['nom'];
@@ -155,7 +155,7 @@ abstract class User {
             $_SESSION['prenom'] = $userprenom;
             $_SESSION['mail'] = $usermail;
 
-            header("Location: ../../vue/index.php");
+            header("Location: ../../vue/A2F.php");
             return true;
         } else {
             header("Location: ../../vue/user/ConnexionInscription.php");

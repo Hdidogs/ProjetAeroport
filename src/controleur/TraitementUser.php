@@ -2,6 +2,7 @@
 include "../bdd/SQLConnexion.php";
 include "../model/user/User.php";
 include "../model/user/Client.php";
+include "../../vendor/autoload.php";
 
 if (array_key_exists("connexion", $_POST)) {
     $mail = $_POST['mail'];
