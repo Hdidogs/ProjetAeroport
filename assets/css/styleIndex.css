@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 body {
-    background-color: #333333;
+    background-color: #2b3035;
 }
 
 ::-webkit-scrollbar {
@@ -10,4 +10,8 @@ body {
 
 button:hover {
     transform: scale(0.95);
+}
+
+.scale:hover {
+    transform: scale(1.05);
 }
