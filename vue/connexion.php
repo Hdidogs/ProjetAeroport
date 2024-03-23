@@ -59,33 +59,38 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
-                                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="nom" minlength="4" class="input-field" autocomplete="off" required />
                                 <label>Nom</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="prenom" minlength="4" class="input-field" autocomplete="off" required />
                                 <label>Prenom</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="date" minlength="4" class="input-field-date" autocomplete="off" required />
+                                <input type="date" name="date" minlength="4" class="input-field-date" autocomplete="off" required />
                                 <label>Date de naissance</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="ville" minlength="4" class="input-field" autocomplete="off" required />
                                 <label>Ville de Résidence</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="email" class="input-field" autocomplete="off" required />
+                                <input type="email" name="mail" class="input-field" autocomplete="off" required />
                                 <label>Email</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off" required />
                                 <label>Mot de passe</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="password" name="remdp" minlength="4" class="input-field" autocomplete="off" required />
+                                <label>Confirmer Mot de passe</label>
                             </div>
 
                             <input type="submit" name="inscriptionclient" value="S'inscrire" class="sign-btn" />
