@@ -34,7 +34,7 @@ class Client extends User {
             header("Location: ../../vue/index.php");
             return true;
         } else {
-            header("Location: ../../vue/user/ConnexionInscription.php");
+            header("Location: ../../vue/connexion.php");
             return false;
         }
     }
