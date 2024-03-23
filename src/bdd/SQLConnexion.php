@@ -1,7 +1,4 @@
-
 <?php
-
-
 class SQLConnexion{
     private $bdd;
     private $serveur = "localhost" ;

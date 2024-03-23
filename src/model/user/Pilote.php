@@ -5,7 +5,7 @@ class Pilote extends User {
     private $fonction;
 
     public function __construct(array $info, $compagnie, $fonction) {
-        $this->hydrate($info);
+        parent::__construct($info);
         $this->compagnie = $compagnie;
         $this->fonction = $fonction;
     }
