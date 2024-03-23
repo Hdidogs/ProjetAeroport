@@ -2,7 +2,6 @@
 include "../bdd/SQLConnexion.php";
 include "../model/user/User.php";
 include "../model/user/Client.php";
-include "../../vendor/autoload.php";
 
 if (array_key_exists("connexion", $_POST)) {
     $mail = $_POST['mail'];
@@ -24,10 +23,15 @@ if (array_key_exists("connexion", $_POST)) {
         ]);
 
         if (User::CHECKIFMAILEXIST($_POST['mail'])) {
-            header("Location: ../../vue/user/inscription.php");
+            header("Location: ../../vue/connexion.php");
         } else {
             $user->inscription();
         }
     }
+} if (array_key_exists("deconnexion", $_POST)) {
+    session_start();
+    session_destroy();
+
+    header("Location: ../../vue/connexion.php");
 }
 ?>
