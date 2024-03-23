@@ -1,5 +1,14 @@
+<?php
+session_start();
+
+if (isset($_SESSION["id_user"])) {
+    $id = $_SESSION["id_user"];
+} else {
+    header("Location: connexion.php");
+}
+?>
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
+<html data-bs-theme="light" lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -9,7 +18,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../assets/css/styleIndex.css">
-    <link rel="stylesheet" href="../assets/scss/flag.scss">
 
     <!-- Liens vers les fichiers JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -21,9 +29,9 @@
 <body>
     <div class="carousel slide" data-bs-ride="false" id="carousel-1">
         <div class="carousel-inner">
-            <div class="carousel-item active"><img class="w-100 d-block" src="../assets/images/58796297-43317668.jpg" alt="Slide Image"></div>
-            <div class="carousel-item"><img class="w-100 d-block" src="../assets/images/istockphoto-1138175909-612x612.jpg" alt="Slide Image"></div>
-            <div class="carousel-item"><img class="w-100 d-block" src="../assets/images/photos-la-reunion-cascade-aigrettes.jpg" alt="Slide Image"></div>
+            <div class="carousel-item active"><img class="w-100 d-block" src="../assets/images/58796297-43317668.jpg" alt="Slide Image" height="1000"></div>
+            <div class="carousel-item"><img class="w-100 d-block" src="../assets/images/istockphoto-1138175909-612x612.jpg" alt="Slide Image" height="1000"></div>
+            <div class="carousel-item"><img class="w-100 d-block" src="../assets/images/photos-la-reunion-cascade-aigrettes.jpg" alt="Slide Image" height="1000"></div>
         </div>
         <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
         <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="2"></button></div>
@@ -40,7 +48,7 @@
                 <p class="card-text">Découvrez notre service de parking pratique et sécurisé pour votre voyage en avion ! Profitez d'un stationnement facilement accessible, avec des options de réservation en ligne et une surveillance 24h/24 pour une tranquillité d'esprit totale.</p>
             </div>
             <div style="margin: 20px">
-                <button class="btn btn-primary" type="button">Réserver Maintenant</button>
+                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Réserver Maintenant</button>
             </div>
         </div>
         <div class="card scale" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
@@ -49,7 +57,7 @@
                 <p class="card-text">Explorez notre service de transport dédié pour un voyage sans tracas depuis et vers l'aéroport ! Nous vous proposons aussi des services de location de voitures pour répondre à vos besoins de déplacement.</p>
             </div>
             <div style="margin: 20px">
-                <button class="btn btn-primary" type="button">Réserver Maintenant</button>
+                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Réserver Maintenant</button>
             </div>
         </div>
         <div class="card scale" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
@@ -58,7 +66,7 @@
                 <p class="card-text">Découvrez nos différent restaurant présent dans notre aéroport. Allant de la restauration rapide au luxueux repas d'un restaurant 5 étoiles, vous trouverais tout se dont vous avez besoin pour répondre a votre besoin de nourritures.</p>
             </div>
             <div style="margin: 20px">
-                <button class="btn btn-primary" type="button">Se Renseigner</button>
+                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Se Renseigner</button>
             </div>
         </div>
         <div class="card scale" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
@@ -67,7 +75,7 @@
                 <p class="card-text">Découvrez nos boutiques variées et captivantes ! Sélection soigneusement choisie de marques renommées pour une expérience shopping unique. Service client exceptionnel, chaque visite est une aventure !</p>
             </div>
             <div style="margin: 20px">
-                <button class="btn btn-primary" type="button">Consulter</button>
+                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Consulter</button>
             </div>
         </div>
         <div class="card scale" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
@@ -76,7 +84,7 @@
                 <p class="card-text">"Découvrez nos services variés et professionnels ! Des solutions adaptées à vos besoins, avec un service clientèle exceptionnel pour une expérience personnalisée. Explorez et profitez d'un service de qualité dès aujourd'hui !</p>
             </div>
             <div style="margin: 20px">
-                <button class="btn btn-primary" type="button">Consulter</button>
+                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Consulter</button>
             </div>
         </div>
     </div>
@@ -92,7 +100,7 @@
                                 <div class="mb-3"><input class="form-control" type="text" id="name-2" name="name" placeholder="Name"></div>
                                 <div class="mb-3"><input class="form-control" type="email" id="email-2" name="email" placeholder="Email"></div>
                                 <div class="mb-3"><textarea class="form-control" id="message-2" name="message" rows="6" placeholder="Message"></textarea></div>
-                                <div><button class="btn btn-primary d-block w-100" type="submit">Send </button></div>
+                                <div><button class="btn d-block w-100" style="background-color: #ffe0d2; color: #333333" type="submit">Send </button></div>
                             </form>
                         </div>
                     </div>
@@ -115,10 +123,10 @@
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
-                    <h3 class="fs-6 text-white">A Propos</h3>
+                    <h3 class="fs-6 text-white">À Propos</h3>
                     <ul class="list-unstyled">
-                        <li><a class="link-light" href="#">Airport</a></li>
-                        <li><a class="link-light" href="#">Airline Company</a></li>
+                        <li><a class="link-light" href="#">Aéroport</a></li>
+                        <li><a class="link-light" href="#">Compagnies Aériennes</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
@@ -135,27 +143,28 @@
             </div>
             <hr>
             <div class="d-flex justify-content-between align-items-center pt-3">
-                <p class="mb-0">Copyright © 2024 Nuage Airport</p>
+                <p class="mb-0">Copyright © 2024 - Nuage Airport</p>
                 <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><i class="fa-brands fa-facebook"></i></li>
-                    <li class="list-inline-item"><i class="fa-brands fa-instagram"></i></li>
-                    <li class="list-inline-item"><i class="fa-brands fa-x-twitter"></i></li>
+                    <li class="list-inline-item"><a style="color: white" target="_blank" href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a style="color: white" target="_blank" href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a style="color: white" target="_blank" href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a></li>
                 </ul>
             </div>
         </div>
     </footer>
 
-    <nav class="navbar navbar-expand-md bg-body py-3" style="left: 0; top: 0; width: 100%; position: fixed; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; z-index: 1">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#">
+    <nav class="navbar navbar-expand-md bg-body py-3" style="opacity: 98%; left: 0; top: 0; width: 100%; position: fixed; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; z-index: 1">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
                 <span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"></span>
-                <span>Nuage Airport</span></a>
+                <span style="color: black;">Nuage Airport</span></a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="text-align: center"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span><i class="fa-solid fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Réservation</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Vols</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Services</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="vol/prochainVol.php">Prochain Départ</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#">Réservation</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#">Vols</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="vol/prochainVol.php">Prochain Départ</a></li>
                     <li class="nav-item">
                         <div class="dropdown" style="margin-top: -5px">
                             <a href="#" class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -208,21 +217,31 @@
                                             </path>
                                             <path d="M19.67,60.226h6.834l-5.973,2.856c-.09-.28-.78-2.576-.86-2.856Z" fill="#1a237b">
                                             </path>
-                                        </svg>Anglais</a></li>
+                                        </svg>English</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div class="dropdown" style="padding-left: 50px; margin-top: 3px">
+                        <div class="dropdown" style="padding-left: 10px; margin-top: 4px">
                             <a href="#" class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="https://github.com/hdidogs.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                                <strong>Hdidogs</strong>
+                                <?php
+                                if ($_SESSION['fonction'] == 4) {
+                                    echo "Administrateur";
+                                } else {
+                                    echo $_SESSION['nom'] . " " . $_SESSION['prenom'];
+                                }
+                                ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light text-small" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-top-left-radius: 15px;border-top-right-radius: 15px;border: none;">
                                 <li><a class="dropdown-item" href="#">Votre Compte</a></li>
                                 <li><a class="dropdown-item" href="#">Paramètre</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                                <li>
+                                    <form method="post" action="../src/controleur/TraitementUser.php">
+                                        <button type="submit" class="dropdown-item" name="deconnexion">Déconnexion</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </li>
