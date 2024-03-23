@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 body {
-    background-color: #2b3035;
+    background-color: #ffe0d2;
 }
 
 ::-webkit-scrollbar {
     display: none;
 }
 
-button:hover {
+button:active {
     transform: scale(0.95);
 }
 
@@ -17,6 +17,13 @@ button:hover {
 }
 
 a.dropdown-item:hover {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+button.dropdown-item:hover {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
