@@ -14,10 +14,10 @@
         <div class="box">
             <div class="inner-box">
                 <div class="forms-wrap">
-                    <form action="connexion.html" autocomplete="off" class="sign-in-form">
+                    <form action="../src/controleur/TraitementUser.php" method="post" autocomplete="off" class="sign-in-form">
                         <div class="logo">
                             <img src="../assets/images/logo.png" alt="easyclass" />
-                            <h4>Gestion de Stock</h4>
+                            <h4>Nuage Air</h4>
                         </div>
                         <div class="heading">
                             <h2>Bienvenue</h2>
@@ -27,16 +27,16 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
-                                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
-                                <label>Nom</label>
+                                <input type="text" name="mail" minlength="4" class="input-field" autocomplete="off" required />
+                                <label>Adresse Mail</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off" required />
                                 <label>Mot de Passe</label>
                             </div>
 
-                            <input type="submit" value="Se Connecter" class="sign-btn" />
+                            <input type="submit" name="connexion" value="Se Connecter" class="sign-btn" />
 
                             <p class="text">
                                 Mot de passe oublié ?
@@ -45,10 +45,10 @@
                         </div>
                     </form>
 
-                    <form action="connexion.html" autocomplete="off" class="sign-up-form">
+                    <form action="../src/controleur/TraitementUser.php" method="post" autocomplete="off" class="sign-up-form">
                         <div class="logo">
                             <img src="../assets/images/logo.png" alt="easyclass" />
-                            <h4>Gestion de Stock</h4>
+                            <h4>Nuage Air</h4>
                         </div>
 
                         <div class="heading">
@@ -64,6 +64,21 @@
                             </div>
 
                             <div class="input-wrap">
+                                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                                <label>Prenom</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="date" minlength="4" class="input-field-date" autocomplete="off" required />
+                                <label>Date de naissance</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                                <label>Ville de Résidence</label>
+                            </div>
+
+                            <div class="input-wrap">
                                 <input type="email" class="input-field" autocomplete="off" required />
                                 <label>Email</label>
                             </div>
@@ -73,7 +88,7 @@
                                 <label>Mot de passe</label>
                             </div>
 
-                            <input type="submit" value="S'inscrire" class="sign-btn" />
+                            <input type="submit" name="inscriptionclient" value="S'inscrire" class="sign-btn" />
 
                             <p class="text">
                                 En vous inscrivant, vous acceptez les
@@ -95,9 +110,9 @@
                         <div class="text-wrap">
                             <div class="text-group">
                                 <div class="heading">
-                                    <h2>Gestion Stock</h2>
-                                    <h2>Visualisation du Stock</h2>
-                                    <h2>Commande / Bon de débit </h2>
+                                    <h2>Nuage Air</h2>
+                                    <h2>Réservation de Vol</h2>
+                                    <h2>Prise en charge</h2>
                                 </div>
                             </div>
                         </div>
