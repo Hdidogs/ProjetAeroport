@@ -37,11 +37,11 @@ if (isset($_SESSION["id_user"])) {
         <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="2"></button></div>
     </div>
 
-    <section class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
+    <section id="vols" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
 
     </section>
 
-    <div class="card-group" style="margin: 15px;">
+    <div id="services" class="card-group" style="margin: 15px;">
         <div class="card scale" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
             <div class="card-body">
                 <h4 class="card-title">Parking</h4>
@@ -89,7 +89,7 @@ if (isset($_SESSION["id_user"])) {
         </div>
     </div>
 
-    <section class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
+    <section id="reservation" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); border-top-left-radius: 15px; border-top-right-radius: 15px;">
         <div class="container position-relative">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
@@ -161,9 +161,9 @@ if (isset($_SESSION["id_user"])) {
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2" style="text-align: center"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span><i class="fa-solid fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navcol-2">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#">Réservation</a></li>
-                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#">Vols</a></li>
-                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#reservation">Réservation</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#vols">Vols</a></li>
+                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link active" style="color: black;" href="vol/prochainVol.php">Prochain Départ</a></li>
                     <li class="nav-item">
                         <div class="dropdown" style="margin-top: -5px">
@@ -236,6 +236,13 @@ if (isset($_SESSION["id_user"])) {
                             <ul class="dropdown-menu dropdown-menu-light text-small" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-top-left-radius: 15px;border-top-right-radius: 15px;border: none;">
                                 <li><a class="dropdown-item" href="#">Votre Compte</a></li>
                                 <li><a class="dropdown-item" href="#">Paramètre</a></li>
+                                <?php
+                                if ($_SESSION['fonction'] == 4) {
+                                    ?>
+                                    <li><a class="dropdown-item" href="panelAdministrateur.php">Panel Administration</a></li>
+                                <?php
+                                }
+                                ?>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form method="post" action="../src/controleur/TraitementUser.php">
