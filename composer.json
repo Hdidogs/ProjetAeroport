@@ -6,6 +6,7 @@
         "spomky-labs/otphp": "^10.0",
         "christian-riesen/otp": "^2.7",
         "robthree/twofactorauth": "^1.8",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+      "ext-cassandra": "*"
     }
 }

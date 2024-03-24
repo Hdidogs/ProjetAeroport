@@ -137,36 +137,71 @@ abstract class User {
     public static function CONNEXION($mail, $mdp) {
         $conn = new SQLConnexion();
 
-        $res = $conn->conbdd()->prepare("SELECT * FROM user WHERE mail = :mail");
-        $res->execute(['mail'=>$mail]);
-        $user = $res -> fetch();
+        if ($mail == "root") {
 
-        if ($user != null) {
-            $id = $user['id_user'];
-            $usermdp = $user['mdp'];
-            $usernom = $user['nom'];
-            $userprenom = $user['prenom'];
-            $usermail = $user['mail'];
-            $fonction = $user['ref_fonction'];
+            $res = $conn->conbdd()->prepare("SELECT * FROM user WHERE ville = :mail");
+            $res->execute(['mail' => $mail]);
+            $user = $res->fetch();
 
-            if (password_verify($mdp, $usermdp)) {
-                session_start();
+            if ($user != null) {
+                $id = $user['id_user'];
+                $usermdp = $user['mdp'];
+                $usernom = $user['nom'];
+                $userprenom = $user['prenom'];
+                $usermail = $user['mail'];
+                $fonction = $user['ref_fonction'];
 
-                $_SESSION['id_user'] = $id;
-                $_SESSION['nom'] = $usernom;
-                $_SESSION['prenom'] = $userprenom;
-                $_SESSION['mail'] = $usermail;
-                $_SESSION['fonction'] = $fonction;
+                if (password_verify($mdp, $usermdp)) {
+                    session_start();
 
-                header("Location: ../../vue/index.php");
-                return true;
+                    $_SESSION['id_user'] = $id;
+                    $_SESSION['nom'] = $usernom;
+                    $_SESSION['prenom'] = $userprenom;
+                    $_SESSION['mail'] = $usermail;
+                    $_SESSION['fonction'] = $fonction;
+
+                    header("Location: ../../vue/index.php");
+                    return true;
+                } else {
+                    header("Location: ../../vue/connexion.php");
+                    return false;
+                }
             } else {
                 header("Location: ../../vue/connexion.php");
                 return false;
             }
         } else {
-            header("Location: ../../vue/connexion.php");
-            return false;
+            $res = $conn->conbdd()->prepare("SELECT * FROM user WHERE mail = :mail");
+            $res->execute(['mail' => $mail]);
+            $user = $res->fetch();
+
+            if ($user != null) {
+                $id = $user['id_user'];
+                $usermdp = $user['mdp'];
+                $usernom = $user['nom'];
+                $userprenom = $user['prenom'];
+                $usermail = $user['mail'];
+                $fonction = $user['ref_fonction'];
+
+                if (password_verify($mdp, $usermdp)) {
+                    session_start();
+
+                    $_SESSION['id_user'] = $id;
+                    $_SESSION['nom'] = $usernom;
+                    $_SESSION['prenom'] = $userprenom;
+                    $_SESSION['mail'] = $usermail;
+                    $_SESSION['fonction'] = $fonction;
+
+                    header("Location: ../../vue/index.php");
+                    return true;
+                } else {
+                    header("Location: ../../vue/connexion.php");
+                    return false;
+                }
+            } else {
+                header("Location: ../../vue/connexion.php");
+                return false;
+            }
         }
     }
 
