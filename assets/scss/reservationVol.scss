@@ -20,7 +20,6 @@
   display: flex;
   align-items: center;
 }
-
 .input-group {
   flex: 1;
   display: flex;
@@ -79,6 +78,7 @@ input[name="from"]::placeholder {
     padding-inline: 3px;
     position: relative;
     transition: 400ms ease-out;
+    text-align: center; /* Ajout de la propriété pour centrer le texte */
     &.active {
       color: var(--clr-neutral-900);
     }
@@ -150,7 +150,8 @@ label[name="check"] {
   text-decoration: none;
   font-size: 1.125rem;
   background-color: var(--clr-neutral-900);
-  color: white;
+  color: #0a0e58; /* Couleur bleu nuit */
   padding: 20px 25px;
   border-radius: 5px;
+  transition: 0.3s;
 }

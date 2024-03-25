@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-if (isset ($_SESSION["id_user"])) {
+if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
     $id = $_SESSION["id_user"];
-} else {
+}elseif (!isset($_SESSION["A2F"])) {
+    header("Location: user/A2F.php");
+}else {
     header("Location: connexion.php");
 }
 ?>
@@ -125,22 +127,22 @@ if (isset ($_SESSION["id_user"])) {
                 <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
                     <div class="wrapper">
                         <ul class="menu">
-                            <li class="menu__item active">Flights</li>
-                            <li class="menu__item">Flights + Hotel</li>
-                            <li class="menu__item">Rent a Car</li>
-                            <li class="menu__item">Hotel</li>
+                            <li class="menu__item active">Vols</li>
+                            <li class="menu__item">Vols + Hôtel</li>
+                            <li class="menu__item">Transport</li>
+                            <li class="menu__item">Hôtel</li>
                         </ul>
 
                         <div class="card__body">
                             <div class="wrapper">
                                 <form class="card__form">
                                     <div class="input-group">
-                                        <label for="from">From</label>
-                                        <input type="text" id="from" name="from" placeholder="Bergen (BGO)">
+                                        <label for="from">Où</label>
+                                        <input type="text" id="from" name="from" placeholder="Où êtes-vous ?">
                                     </div>
                                     <div class="input-group">
-                                        <label for="to">To</label>
-                                        <input type="text" id="from" name="to" placeholder="Where are you going?">
+                                        <label for="to">À</label>
+                                        <input type="text" id="from" name="to" placeholder="Où allez-vous ?">
                                     </div>
                                 </form>
                             </div>
@@ -150,9 +152,9 @@ if (isset ($_SESSION["id_user"])) {
                                 <div class="card__footer">
                                     <div class="card__input">
                                         <input class="custom" type="checkbox" id="check">
-                                        <label for="check" name="check">Show Low Price Calendar</label>
+                                        <label for="check" name="check">Afficher le calendrier des prix bas</label>
                                     </div>
-                                    <a href="#" class="card__btn" style>Search and order</a>
+                                    <a href="#" class="card__btn" style>Rechercher et commander</a>
                                 </div>
                             </div>
                         </footer>
