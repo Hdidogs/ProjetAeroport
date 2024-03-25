@@ -14,7 +14,8 @@
         <div class="box">
             <div class="inner-box">
                 <div class="forms-wrap">
-                    <form action="../src/controleur/TraitementUser.php" method="post" autocomplete="off" class="sign-in-form">
+                    <form action="../src/controleur/TraitementUser.php" method="post" autocomplete="off"
+                        class="sign-in-form">
                         <div class="logo">
                             <img src="../assets/images/logo.png" alt="easyclass" />
                             <h4>Nuage Air</h4>
@@ -27,12 +28,14 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
-                                <input type="text" name="mail" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="mail" minlength="4" class="input-field" autocomplete="off"
+                                    required />
                                 <label>Adresse Mail</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off"
+                                    required />
                                 <label>Mot de Passe</label>
                             </div>
 
@@ -45,7 +48,8 @@
                         </div>
                     </form>
 
-                    <form action="../src/controleur/TraitementUser.php" method="post" autocomplete="off" class="sign-up-form">
+                    <form action="../src/controleur/TraitementUser.php" method="post" autocomplete="off"
+                        class="sign-up-form">
                         <div class="logo">
                             <img src="../assets/images/logo.png" alt="easyclass" />
                             <h4>Nuage Air</h4>
@@ -59,22 +63,26 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
-                                <input type="text" name="nom" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="nom" minlength="4" class="input-field" autocomplete="off"
+                                    required />
                                 <label>Nom</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="text" name="prenom" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="prenom" minlength="4" class="input-field" autocomplete="off"
+                                    required />
                                 <label>Prenom</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="date" name="date" minlength="4" class="input-field-date" autocomplete="off" required />
+                                <input type="date" name="date" minlength="4" class="input-field-date" autocomplete="off"
+                                    required />
                                 <label>Date de naissance</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="text" name="ville" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="text" name="ville" minlength="4" class="input-field" autocomplete="off"
+                                    required />
                                 <label>Ville de Résidence</label>
                             </div>
 
@@ -84,22 +92,14 @@
                             </div>
 
                             <div class="input-wrap">
-                                <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off" required />
+                                <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off"
+                                    required />
                                 <label>Mot de passe</label>
                             </div>
 
-                            <div class="input-wrap">
-                                <input type="password" name="remdp" minlength="4" class="input-field" autocomplete="off" required />
-                                <label>Confirmer Mot de passe</label>
-                            </div>
 
                             <input type="submit" name="inscriptionclient" value="S'inscrire" class="sign-btn" />
 
-                            <p class="text">
-                                En vous inscrivant, vous acceptez les
-                                <a href="#">Conditions d'utilisation</a> et la
-                                <a href="#">Politique de confidentialité</a>
-                            </p>
                         </div>
                     </form>
                 </div>
