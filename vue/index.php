@@ -119,12 +119,10 @@ if (isset ($_SESSION["id_user"])) {
         </div>
     </div>
 
-
-
     <section class="section" style="background: var(--bs-body-bg); ">
         <div class="container position-relative">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
                     <div class="wrapper">
                         <ul class="menu">
                             <li class="menu__item active">Flights</li>
@@ -325,7 +323,10 @@ if (isset ($_SESSION["id_user"])) {
                                             <path d="M19.67,60.226h6.834l-5.973,2.856c-.09-.28-.78-2.576-.86-2.856Z"
                                                 fill="#1a237b">
                                             </path>
-                                        </svg>English</a></li>
+                                        </svg>
+                                        English
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
