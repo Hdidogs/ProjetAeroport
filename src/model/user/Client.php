@@ -31,7 +31,7 @@ class Client extends User {
             $_SESSION['mail'] = $this->getMail();
             $_SESSION['fonction'] = "client";
 
-            header("Location: ../../vue/index.php");
+            header("Location: ../../vue/user/A2F.php");
             return true;
         } else {
             header("Location: ../../vue/connexion.php");
