@@ -10,7 +10,7 @@ if (array_key_exists("connexion", $_POST)) {
     User::CONNEXION($mail, $mdp);
 } else if (array_key_exists("inscriptionclient", $_POST)) {
     /*if ($_POST['mdp'] == $_POST['remdp'])*/ {
-        $newmdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+        $newmdp = password_hash($_POST['mdp'],PASSWORD_DEFAULT);
 
         $prenom = strtolower($_POST['prenom']);
         $user = new Client([
@@ -28,8 +28,7 @@ if (array_key_exists("connexion", $_POST)) {
             $user->inscription();
         }
     }
-}
-if (array_key_exists("deconnexion", $_POST)) {
+} if (array_key_exists("deconnexion", $_POST)) {
     session_start();
     session_destroy();
 
