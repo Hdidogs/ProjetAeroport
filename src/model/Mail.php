@@ -16,13 +16,13 @@ class Mail {
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'nuageair.airport@gmail.com';
-            $mail->Password = 'gzqzsuayjipgnecr';
+            $mail->Password = 'clrdgoxcarjsuxuj';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port = 465;
 
             //Recipients
-            $mail->setFrom("mrlestrelin0@gmail.com", 'Lestrelin');
-            $mail->addAddress($mail);
+            $mail->setFrom("nuageair.airport@gmail.com", 'Nuage Air');
+            $mail->addAddress($mailSend);
 
             //Content
             $mail->isHTML(true);
