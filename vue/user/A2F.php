@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include '../../src/bdd/SQLConnexion.php';
 
 // Vérifier si l'utilisateur est déjà connecté

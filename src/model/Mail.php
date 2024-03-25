@@ -21,8 +21,8 @@ class Mail {
             $mail->Port = 465;
 
             //Recipients
-            $mail->setFrom("mrlestrelin0@gmail.com", 'Lestrelin');
-            $mail->addAddress($mail);
+            $mail->setFrom("nuageair.airport@gmail.com", 'NuageAir');
+            $mail->addAddress($mailSend);
 
             //Content
             $mail->isHTML(true);
