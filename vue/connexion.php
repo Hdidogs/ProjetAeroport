@@ -63,26 +63,42 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
+<<<<<<< HEAD
+                                <input type="text" name="nom"  class="input-field" autocomplete="off" required />
+=======
                                 <input type="text" name="nom" minlength="4" class="input-field" autocomplete="off"
                                     required />
+>>>>>>> d0af8e2717fe6b656abc9f74fef4b7e36a187723
                                 <label>Nom</label>
                             </div>
 
                             <div class="input-wrap">
+<<<<<<< HEAD
+                                <input type="text" name="prenom"  class="input-field" autocomplete="off" required />
+=======
                                 <input type="text" name="prenom" minlength="4" class="input-field" autocomplete="off"
                                     required />
+>>>>>>> d0af8e2717fe6b656abc9f74fef4b7e36a187723
                                 <label>Prenom</label>
                             </div>
 
                             <div class="input-wrap">
+<<<<<<< HEAD
+                                <input type="date" name="date"  class="input-field-date" autocomplete="off" required />
+=======
                                 <input type="date" name="date" minlength="4" class="input-field-date" autocomplete="off"
                                     required />
+>>>>>>> d0af8e2717fe6b656abc9f74fef4b7e36a187723
                                 <label>Date de naissance</label>
                             </div>
 
                             <div class="input-wrap">
+<<<<<<< HEAD
+                                <input type="text" name="ville"  class="input-field" autocomplete="off" required />
+=======
                                 <input type="text" name="ville" minlength="4" class="input-field" autocomplete="off"
                                     required />
+>>>>>>> d0af8e2717fe6b656abc9f74fef4b7e36a187723
                                 <label>Ville de Résidence</label>
                             </div>
 
@@ -92,11 +108,22 @@
                             </div>
 
                             <div class="input-wrap">
+<<<<<<< HEAD
+                                <input type="password" name="mdp" minlength="8" class="input-field" autocomplete="off" required />
+                                <label>Mot de passe</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="password" name="remdp" minlength="8" class="input-field" autocomplete="off" required />
+                                <label>Confirmer Mot de passe</label>
+                            </div>
+=======
                                 <input type="password" name="mdp" minlength="4" class="input-field" autocomplete="off"
                                     required />
                                 <label>Mot de passe</label>
                             </div>
 
+>>>>>>> d0af8e2717fe6b656abc9f74fef4b7e36a187723
 
                             <input type="submit" name="inscriptionclient" value="S'inscrire" class="sign-btn" />
 

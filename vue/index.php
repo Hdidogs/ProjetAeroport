@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-if (isset ($_SESSION["id_user"])) {
+if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
     $id = $_SESSION["id_user"];
-} else {
+}elseif (!isset($_SESSION["A2F"])) {
+    header("Location: user/A2F.php");
+}else {
     header("Location: connexion.php");
 }
 ?>
