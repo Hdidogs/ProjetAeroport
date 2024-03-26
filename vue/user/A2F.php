@@ -26,13 +26,10 @@ if (!isset($_SESSION["id_user"])) {
             $error = "Code de vérification incorrect";
         }
     }else{
-        // Authentification réussie, générer un code de vérification
         $verification_code = rand(100000, 999999);
 
-// Enregistrer le code de vérification dans la session
         $_SESSION['verification_code'] = $verification_code;
 
-// Envoyer le code de vérification à l'utilisateur
         Mail:: SENDMAIL($_SESSION['mail'], 'Votre code de vérification', 'Votre code de vérification est : ' . $verification_code);
     }
 
@@ -47,6 +44,7 @@ if (!isset($_SESSION["id_user"])) {
 <form method="POST" action="">
     <label for="text">Mot de passe:</label>
     <input type="text" minlength="6" maxlength="6" id="verification_code" name="verification_code" required><br>
+    <a href="../connexion.php" class="btn">Retour</a>
     <input type="submit" value="Se connecter">
 </form>
 <script>
