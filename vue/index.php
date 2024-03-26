@@ -3,7 +3,9 @@ session_start();
 
 if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
     $id = $_SESSION["id_user"];
-}elseif (!isset($_SESSION["A2F"])) {
+} elseif ($_SESSION['id_user'] == 506) {
+    $id = $_SESSION["id_user"];
+} elseif (!isset($_SESSION["A2F"])) {
     header("Location: user/A2F.php");
 }else {
     header("Location: connexion.php");
@@ -163,6 +165,8 @@ if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
             </div>
         </div>
     </section>
+
+    <?=$id?>
 
     <footer class="text-white bg-dark" style="">
         <div class="container py-4 py-lg-5">

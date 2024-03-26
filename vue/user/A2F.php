@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 if (!isset($_SESSION["id_user"])) {
     header("Location: ../connexion.php");
 }
@@ -12,7 +14,6 @@ if (!isset($_SESSION["id_user"])) {
 
 <div id="php">
     <?php
-    session_start();
     include '../../src/bdd/SQLConnexion.php';
     include '../../src/model/Mail.php';
 
