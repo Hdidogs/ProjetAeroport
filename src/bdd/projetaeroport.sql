@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 24 mars 2024 à 22:10
--- Version du serveur : 8.0.31
--- Version de PHP : 8.0.26
+-- Généré le : mar. 26 mars 2024 à 08:35
+-- Version du serveur : 8.2.0
+-- Version de PHP : 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,63 @@ CREATE TABLE IF NOT EXISTS `avion` (
   `ref_modele` int NOT NULL,
   PRIMARY KEY (`id_avion`),
   KEY `fk_avion_modele` (`ref_modele`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `avion`
+--
+
+INSERT INTO `avion` (`id_avion`, `nb_place`, `immat`, `ref_modele`) VALUES
+(2, 596, '7244-2054-4727', 14),
+(3, 515, '4569-5701-3237', 16),
+(4, 542, '1627-3126-1786', 12),
+(5, 442, '5877-4804-1605', 21),
+(6, 485, '3541-8755-6638', 19),
+(7, 264, '6059-6188-9718', 21),
+(8, 711, '0286-9778-5262', 5),
+(9, 428, '2531-4386-2224', 2),
+(10, 413, '3155-8320-6608', 21),
+(11, 327, '5808-8237-4921', 8),
+(12, 797, '8188-6521-5230', 2),
+(13, 838, '3418-0683-8656', 9),
+(14, 365, '8975-5048-3852', 19),
+(15, 370, '1543-6578-6914', 23),
+(16, 175, '7582-5259-6005', 6),
+(17, 704, '3166-0751-2184', 6),
+(18, 669, '3855-8387-0657', 13),
+(19, 429, '1505-7102-3533', 1),
+(20, 231, '7893-3671-8167', 16),
+(21, 622, '2423-7280-9576', 18),
+(22, 213, '9616-1925-9234', 16),
+(23, 643, '6647-2655-2041', 19),
+(24, 255, '1823-8706-8143', 24),
+(25, 834, '0571-9552-9597', 12),
+(26, 830, '0168-9583-9004', 2),
+(27, 761, '0387-5832-1380', 24),
+(28, 350, '6475-7954-1864', 2),
+(29, 250, '2430-8550-0634', 4),
+(30, 839, '8468-2544-7701', 2),
+(31, 745, '6564-4769-4635', 10),
+(32, 845, '2751-5435-4671', 24),
+(33, 503, '7726-3021-2262', 21),
+(34, 272, '2396-8744-3986', 2),
+(35, 600, '9183-1154-1238', 5),
+(36, 601, '8036-7706-4067', 23),
+(37, 271, '0466-3623-5765', 7),
+(38, 271, '5382-7061-7275', 4),
+(39, 735, '7988-3956-3708', 8),
+(40, 406, '6132-5389-8238', 1),
+(41, 553, '5094-2288-7837', 6),
+(42, 450, '1867-4282-7754', 19),
+(43, 806, '6379-6754-6928', 16),
+(44, 821, '7833-8081-2885', 9),
+(45, 796, '3468-8638-1386', 6),
+(46, 690, '4684-4261-6774', 13),
+(47, 580, '2872-1351-2557', 14),
+(48, 620, '1818-6431-2185', 22),
+(49, 240, '7151-6267-9728', 17),
+(50, 563, '6243-7034-3827', 8),
+(51, 183, '4161-8748-1615', 16);
 
 -- --------------------------------------------------------
 
@@ -96,10 +152,116 @@ DROP TABLE IF EXISTS `destination`;
 CREATE TABLE IF NOT EXISTS `destination` (
   `id_destination` int NOT NULL AUTO_INCREMENT,
   `nom_aeroport` varchar(100) NOT NULL,
-  `ref_pays` int NOT NULL,
+  `ref_ville` int NOT NULL,
   PRIMARY KEY (`id_destination`),
-  KEY `fk_destination_pays` (`ref_pays`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_destination_pays` (`ref_ville`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `destination`
+--
+
+INSERT INTO `destination` (`id_destination`, `nom_aeroport`, `ref_ville`) VALUES
+(1, 'Daquan Gaines Aéroport', 198),
+(2, 'Chantale Cabrera Aéroport', 123),
+(3, 'Patrick Trujillo Aéroport', 193),
+(4, 'Amir Baker Aéroport', 23),
+(5, 'Macey Davis Aéroport', 84),
+(6, 'Matthew Parrish Aéroport', 133),
+(7, 'May Ochoa Aéroport', 126),
+(8, 'Cathleen Mathews Aéroport', 248),
+(9, 'Ethan Wiggins Aéroport', 181),
+(10, 'Igor Coffey Aéroport', 124),
+(11, 'Miranda Bowen Aéroport', 243),
+(12, 'Raja Barton Aéroport', 231),
+(13, 'Maite Wilkins Aéroport', 184),
+(14, 'Britanni Conrad Aéroport', 59),
+(15, 'Dawn Matthews Aéroport', 249),
+(16, 'Abbot Sanford Aéroport', 77),
+(17, 'Hamish Snider Aéroport', 91),
+(18, 'Lara Shaffer Aéroport', 212),
+(19, 'Driscoll Morris Aéroport', 94),
+(20, 'Driscoll Snyder Aéroport', 123),
+(21, 'Yoko Ratliff Aéroport', 24),
+(22, 'Wesley Sweeney Aéroport', 51),
+(23, 'Denise Puckett Aéroport', 156),
+(24, 'Zahir Parsons Aéroport', 85),
+(25, 'David Buck Aéroport', 120),
+(26, 'Driscoll Sharp Aéroport', 149),
+(27, 'Hillary Pennington Aéroport', 45),
+(28, 'Orson Buckley Aéroport', 8),
+(29, 'Bryar Duran Aéroport', 224),
+(30, 'Hermione Barry Aéroport', 162),
+(31, 'Frances Bradford Aéroport', 123),
+(32, 'Jeremy Baker Aéroport', 172),
+(33, 'Brynne Preston Aéroport', 146),
+(34, 'Ross Hanson Aéroport', 250),
+(35, 'Kelly Richmond Aéroport', 131),
+(36, 'Jaden Nelson Aéroport', 118),
+(37, 'May Wolf Aéroport', 62),
+(38, 'May Knight Aéroport', 183),
+(39, 'Morgan Stevens Aéroport', 213),
+(40, 'Blythe Carrillo Aéroport', 157),
+(41, 'Iona Stanley Aéroport', 194),
+(42, 'Cruz Hale Aéroport', 102),
+(43, 'Macon Pierce Aéroport', 88),
+(44, 'Summer Mcleod Aéroport', 197),
+(45, 'Daria Hendricks Aéroport', 45),
+(46, 'Carolyn Luna Aéroport', 52),
+(47, 'Nero Padilla Aéroport', 49),
+(48, 'Armand Hull Aéroport', 91),
+(49, 'Ori Lawson Aéroport', 132),
+(50, 'Burke Cardenas Aéroport', 41),
+(51, 'Felix Chavez Aéroport', 70),
+(52, 'Brenden Richards Aéroport', 2),
+(53, 'Joy Beck Aéroport', 119),
+(54, 'Iola Brewer Aéroport', 100),
+(55, 'Nehru Mclean Aéroport', 79),
+(56, 'Ursa Peterson Aéroport', 95),
+(57, 'Marah Booth Aéroport', 69),
+(58, 'Olympia Wilkins Aéroport', 62),
+(59, 'Adam Hewitt Aéroport', 129),
+(60, 'Ferris Barber Aéroport', 68),
+(61, 'Yvonne Dejesus Aéroport', 71),
+(62, 'Pamela Bonner Aéroport', 152),
+(63, 'Ali Hughes Aéroport', 38),
+(64, 'Ainsley Perry Aéroport', 87),
+(65, 'Natalie Larsen Aéroport', 65),
+(66, 'Castor Barker Aéroport', 43),
+(67, 'Wynter York Aéroport', 62),
+(68, 'Alice Duffy Aéroport', 4),
+(69, 'Uriah Logan Aéroport', 200),
+(70, 'Inez O\'donnell Aéroport', 214),
+(71, 'Tanek Russell Aéroport', 195),
+(72, 'Shay Alvarado Aéroport', 167),
+(73, 'Marsden Holloway Aéroport', 4),
+(74, 'Clio Olsen Aéroport', 73),
+(75, 'Linus Gates Aéroport', 150),
+(76, 'Cailin Kinney Aéroport', 65),
+(77, 'Brynn Massey Aéroport', 166),
+(78, 'Martin Huff Aéroport', 74),
+(79, 'Daquan Gray Aéroport', 215),
+(80, 'Marah Hubbard Aéroport', 149),
+(81, 'Rashad Spencer Aéroport', 64),
+(82, 'Kaitlin Cardenas Aéroport', 143),
+(83, 'Leilani Snyder Aéroport', 132),
+(84, 'Ruby Salas Aéroport', 106),
+(85, 'Daquan Spence Aéroport', 4),
+(86, 'Xantha Sampson Aéroport', 169),
+(87, 'Fulton Lawrence Aéroport', 116),
+(88, 'Aladdin Bailey Aéroport', 156),
+(89, 'Castor Mayo Aéroport', 76),
+(90, 'Ezekiel Velazquez Aéroport', 218),
+(91, 'Steel Fry Aéroport', 227),
+(92, 'Camilla Johnson Aéroport', 80),
+(93, 'Jerome Mckinney Aéroport', 246),
+(94, 'Benedict Ramsey Aéroport', 102),
+(95, 'Serena Blevins Aéroport', 209),
+(96, 'Jennifer Molina Aéroport', 218),
+(97, 'Armand Hyde Aéroport', 250),
+(98, 'Geoffrey Carrillo Aéroport', 86),
+(99, 'Noelle Knapp Aéroport', 208),
+(100, 'Tyrone Campos Aéroport', 11);
 
 -- --------------------------------------------------------
 
@@ -661,10 +823,10 @@ INSERT INTO `hotel` (`id_hotel`, `nom`, `ref_pays`, `ref_ville`, `adresse`, `tel
 DROP VIEW IF EXISTS `listvol`;
 CREATE TABLE IF NOT EXISTS `listvol` (
 `date` date
-,`heure_arr` time
 ,`heure_dep` time
-,`nom` varchar(100)
+,`heure_arr` time
 ,`nom_aeroport` varchar(100)
+,`nom` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -2318,7 +2480,6 @@ INSERT INTO `vol` (`id_vol`, `date`, `heure_emb`, `heure_dep`, `heure_arr`, `pri
 (110, '2023-09-21', '00:21:05', '15:36:47', '06:49:23', 189, 'Première', 8, 76, 9, 20),
 (111, '2023-07-24', '06:53:28', '12:33:19', '00:06:49', 395, 'Economique', 4, 72, 13, 248),
 (112, '2024-02-10', '12:52:19', '11:11:41', '00:07:02', 381, 'Economique', 8, 40, 9, 385),
-(113, '2024-10-23', '05:19:09', '08:28:11', '05:00:13', 519, 'Affaire', 8, 37, 1, 341),
 (114, '2023-12-25', '09:53:04', '00:21:09', '07:05:27', 516, 'Affaire', 7, 77, 23, 391),
 (115, '2024-07-26', '07:39:43', '20:31:01', '22:29:42', 296, 'Première', 8, 38, 28, 227),
 (116, '2024-06-20', '13:38:41', '17:24:19', '14:02:39', 484, 'Première', 6, 29, 7, 470),
@@ -2427,7 +2588,6 @@ INSERT INTO `vol` (`id_vol`, `date`, `heure_emb`, `heure_dep`, `heure_arr`, `pri
 (219, '2023-06-04', '05:32:32', '11:13:07', '12:31:44', 281, 'Economique', 13, 97, 27, 268),
 (220, '2023-12-31', '22:12:41', '23:08:44', '18:49:16', 104, 'Economique', 10, 41, 9, 321),
 (221, '2023-06-27', '10:43:44', '01:31:26', '09:41:03', 739, 'Affaire', 5, 4, 38, 201),
-(222, '2023-11-10', '22:39:34', '17:52:20', '03:53:32', 425, 'Affaire', 12, 33, 1, 247),
 (223, '2024-09-19', '12:29:40', '16:25:54', '22:41:19', 631, 'Première', 10, 95, 31, 344),
 (224, '2024-05-15', '15:53:11', '22:54:04', '02:18:35', 551, 'Première', 14, 39, 31, 291),
 (225, '2025-01-21', '20:05:16', '10:34:58', '09:30:45', 415, 'Economique', 11, 19, 20, 293),
@@ -2460,12 +2620,55 @@ INSERT INTO `vol` (`id_vol`, `date`, `heure_emb`, `heure_dep`, `heure_arr`, `pri
 -- --------------------------------------------------------
 
 --
+-- Doublure de structure pour la vue `v_pourcentbycompagnie`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `v_pourcentbycompagnie`;
+CREATE TABLE IF NOT EXISTS `v_pourcentbycompagnie` (
+`nom` varchar(100)
+,`pourcent` double
+);
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `v_total`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `v_total`;
+CREATE TABLE IF NOT EXISTS `v_total` (
+`total` double
+);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la vue `listvol`
 --
 DROP TABLE IF EXISTS `listvol`;
 
 DROP VIEW IF EXISTS `listvol`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `listvol`  AS SELECT `v`.`date` AS `date`, `v`.`heure_dep` AS `heure_dep`, `v`.`heure_arr` AS `heure_arr`, `d`.`nom_aeroport` AS `nom_aeroport`, `c`.`nom` AS `nom` FROM ((`vol` `v` join `compagnie` `c` on((`v`.`ref_compagnie` = `c`.`id_companie`))) join `destination` `d` on((`v`.`ref_destination` = `d`.`id_destination`)))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `listvol`  AS SELECT `v`.`date` AS `date`, `v`.`heure_dep` AS `heure_dep`, `v`.`heure_arr` AS `heure_arr`, `d`.`nom_aeroport` AS `nom_aeroport`, `c`.`nom` AS `nom` FROM ((`vol` `v` join `destination` `d` on((`v`.`ref_destination` = `d`.`id_destination`))) join `compagnie` `c` on((`c`.`id_companie` = `v`.`ref_compagnie`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `v_pourcentbycompagnie`
+--
+DROP TABLE IF EXISTS `v_pourcentbycompagnie`;
+
+DROP VIEW IF EXISTS `v_pourcentbycompagnie`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_pourcentbycompagnie`  AS SELECT `c`.`nom` AS `nom`, ((sum(`v`.`prix`) / `vt`.`total`) * 100) AS `pourcent` FROM ((`vol` `v` join `compagnie` `c` on((`v`.`ref_compagnie` = `c`.`id_companie`))) join `v_total` `vt`) GROUP BY `c`.`id_companie` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `v_total`
+--
+DROP TABLE IF EXISTS `v_total`;
+
+DROP VIEW IF EXISTS `v_total`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_total`  AS SELECT sum(`v`.`prix`) AS `total` FROM `vol` AS `v` ;
 
 --
 -- Contraintes pour les tables déchargées
@@ -2481,7 +2684,7 @@ ALTER TABLE `avion`
 -- Contraintes pour la table `destination`
 --
 ALTER TABLE `destination`
-  ADD CONSTRAINT `fk_destination_pays` FOREIGN KEY (`ref_pays`) REFERENCES `pays` (`id_pays`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_destination_ville` FOREIGN KEY (`ref_ville`) REFERENCES `ville` (`id_ville`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `hotel`
@@ -2509,6 +2712,15 @@ ALTER TABLE `user`
 --
 ALTER TABLE `ville`
   ADD CONSTRAINT `fk_ville_pays` FOREIGN KEY (`ref_pays`) REFERENCES `pays` (`id_pays`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Contraintes pour la table `vol`
+--
+ALTER TABLE `vol`
+  ADD CONSTRAINT `fk_vol_avion` FOREIGN KEY (`ref_avion`) REFERENCES `avion` (`id_avion`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_vol_compagnie` FOREIGN KEY (`ref_compagnie`) REFERENCES `compagnie` (`id_companie`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_vol_destination` FOREIGN KEY (`ref_destination`) REFERENCES `destination` (`id_destination`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fk_vol_user` FOREIGN KEY (`ref_pilote`) REFERENCES `user` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
