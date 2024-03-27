@@ -1,4 +1,6 @@
 <?php
+include "../src/bdd/SQLConnexion.php";
+
 session_start();
 
 if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
@@ -10,6 +12,11 @@ if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
 }else {
     header("Location: connexion.php");
 }
+
+$conn = new SQLConnexion();
+
+$req = $conn->conbdd()->query("SELECT * FROM v_aeroport");
+$res = $req->fetchAll();
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="fr">
@@ -23,13 +30,14 @@ if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../assets/css/styleIndex.css">*
     <link rel="stylesheet" href="../assets/scss/reservationVol.scss">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Liens vers les fichiers JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script src="../assets/js/reservationVol.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -67,8 +75,7 @@ if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
                     surveillance 24h/24 pour une tranquillité d'esprit totale.</p>
             </div>
             <div style="margin: 20px">
-                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Réserver
-                    Maintenant</button>
+                <button class="btn" style="background-color: #ffe0d2; color: #333333" type="button">Réserver Maintenant</button>
             </div>
         </div>
         <div class="card scale"
@@ -123,50 +130,71 @@ if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
         </div>
     </div>
 
-    <section class="section" style="background: var(--bs-body-bg); ">
+    <section class="section" style="background: var(--bs-body-bg); " id="reservation">
         <div class="container position-relative">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
-                    <div class="wrapper">
-                        <ul class="menu">
-                            <li class="menu__item active">Vols</li>
-                            <li class="menu__item">Vols + Hôtel</li>
-                            <li class="menu__item">Transport</li>
-                            <li class="menu__item">Hôtel</li>
-                        </ul>
+                <div class="" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
+                    <form action="vol/volsResult.php" method="get">
+                        <br>
+                        <label class="text-form" for="type">Type de Trajet</label>
+                        <label class="text-form" for="classe">Classe</label>
+                        <br>
+                        <select class="form-vol-select" name="type" id="type" required>
+                            <option>Aller - Retour</option>
+                            <option>Aller Simple</option>
+                        </select>
 
-                        <div class="card__body">
-                            <div class="wrapper">
-                                <form class="card__form">
-                                    <div class="input-group">
-                                        <label for="from">Où</label>
-                                        <input type="text" id="from" name="from" placeholder="Où êtes-vous ?">
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="to">À</label>
-                                        <input type="text" id="from" name="to" placeholder="Où allez-vous ?">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <footer class="footer">
-                            <div class="wrapper">
-                                <div class="card__footer">
-                                    <div class="card__input">
-                                        <input class="custom" type="checkbox" id="check">
-                                        <label for="check" name="check">Afficher le calendrier des prix bas</label>
-                                    </div>
-                                    <a href="#" class="card__btn" style>Rechercher et commander</a>
-                                </div>
-                            </div>
-                        </footer>
-                    </div>
+                        <select class="form-vol-select" name="classe" id="classe" required>
+                            <option>Economique</option>
+                            <option>Eco Premium</option>
+                            <option>Affaires</option>
+                            <option>Première</option>
+                        </select>
+                        <br>
+                        <br>
+                        <label class="text-form" for="aller">Date D'Aller</label>
+                        <label class="text-form" for="retour">Date De Retour</label>
+                        <br>
+                        <input type="date" name="aller" id="aller" required>
+                        <input type="date" name="retour" id="retour" required>
+                        <br>
+                        <br>
+                        <label class="text-form" for="depart">Départ</label>
+                        <label class="text-form" for="destination">Arriver</label>
+                        <br>
+                        <select id="depart" name="depart" required>
+                            <?php
+                            foreach ($res as $aeroport) {
+                                ?>
+                                <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <select id="destination" name="destination" style="border-color: #ffe0d2" required>
+                            <?php
+                            foreach ($res as $aeroport) {
+                                ?>
+                                <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <br>
+                        <br>
+                        <label for="passager" class="text-form">Passagers</label>
+                        <br>
+                        <input id="passager" type="text" name="passager" required>
+                        <br>
+                        <br>
+                        <button class="btn" style="background-color: #ffe0d2; color: #333333;" name="searchAR" type="submit">Rechercher</button>
+                        <br>
+                        <br>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-
-    <?=$id?>
 
     <footer class="text-white bg-dark" style="">
         <div class="container py-4 py-lg-5">
@@ -379,6 +407,14 @@ if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
             </div>
         </div>
     </nav>
-</body>
+<script>
+    $('#destination').select2({
+        selectOnClose: true
+    });
 
+    $('#depart').select2({
+        selectOnClose: true
+    });
+</script>
+</body>
 </html>

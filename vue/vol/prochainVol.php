@@ -51,6 +51,7 @@ $res = $req->fetchAll();
         ?>
         </tbody>
     </table>
+    <a href="../index.php">Retour</a>
 </div>
 <script>
     $(document).ready( function () {
