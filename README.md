@@ -1,47 +1,28 @@
-# Flight Management System
+# Nuage Air
 
-## Objectifs du Projet
+Nuage Air est un projet de site web d'aéroport permettant aux utilisateurs de faire des réservations de vols, de consulter les horaires des vols, de gérer leurs réservations et bien plus encore.
 
-### Inscription et Connexion des Utilisateurs
-- Les utilisateurs peuvent s'inscrire en fournissant leur mail, nom, prénom, date de naissance et ville de résidence.
-- Une fois inscrits, les utilisateurs peuvent se connecter au site.
+## Fonctionnalités
 
-### Gestion des Données Personnelles
-- Les utilisateurs connectés peuvent accéder à leurs données personnelles et les modifier selon leurs besoins.
+- **Réservation de vols** : Les utilisateurs peuvent rechercher des vols en fonction de divers critères, tels que la destination, la date et l'heure, et faire des réservations directement sur le site.
 
-### Réservation de Vols
-- Les utilisateurs peuvent réserver des vols en spécifiant la destination, l'heure de départ, l'heure d'arrivée et la ville d'arrivée.
-- Une liste de vols avec des prix variables en fonction des heures d'embarquement sera affichée lors du choix de la destination.
+- **Gestion des réservations** : Les utilisateurs peuvent consulter leurs réservations existantes, les modifier ou les annuler.
 
-### Gestion des Annulations
-- Les utilisateurs peuvent annuler un vol uniquement 48 heures avant le départ.
+- **Consultation des horaires des vols** : Les utilisateurs peuvent consulter les horaires des vols pour planifier leurs voyages.
 
-### Gestion des Comptes Vol
-- Les comptes vol peuvent créer des vols, attribuer des avions aux vols et assigner des pilotes aux avions.
+- **Panel administrateur** : Un panel administrateur est disponible pour gérer les vols, les réservations et les utilisateurs.
 
-### Gestion des Comptes Pilote
-- Les comptes pilote peuvent visualiser l'ensemble de leurs vols et destinations.
-- Les pilotes peuvent également poser des congés, les rendant indisponibles pour les vols.
+## Technique
 
-## Contraintes du Projet
+Dans ce projet, nous avons intégré plusieurs fonctionnalités techniques pour améliorer la sécurité et l'expérience utilisateur :
 
-### Utilisation de Git
-- Tout le code doit être versionné à l'aide de Git pour faciliter la collaboration.
+- **Authentification à deux facteurs (A2F)** : Nous utilisons l'authentification à deux facteurs pour augmenter la sécurité de nos utilisateurs.
 
-### Programmation Orientée Objet (POO)
-- L'ensemble du projet doit utiliser les concepts de la programmation orientée objet.
+- **Envoi de courriels** : Nous utilisons une fonctionnalité d'envoi de courriels pour communiquer avec nos utilisateurs. Cela comprend les courriels de réinitialisation de mot de passe et les notifications.
 
-### Arborescence du Projet
-- Respecter l'arborescence définie en classe pour garantir une organisation cohérente.
+- **Cryptage des mots de passe** : Pour protéger les informations sensibles de nos utilisateurs, nous cryptons les mots de passe avant de les stocker dans notre base de données.
 
-### Sécurité
-- Les mots de passe doivent être cryptés pour assurer la sécurité des utilisateurs.
-
-### Utilisation de Technologies et Librairies
-- PHPMailer doit être utilisé pour la gestion des e-mails.
-- Select2 et Datatable sont nécessaires pour améliorer l'expérience utilisateur.
-- OpenStreetMap doit être intégré pour la visualisation des destinations.
-- Au moins une API doit être utilisée dans le projet.
+- **API** : Nous prévoyons d'intégrer une API dans un futur proche pour permettre l'intégration avec d'autres services et applications.
 
 ## Bloc 1 – PHP 1 BTS SIO option SLAM
 
@@ -73,7 +54,17 @@
 #### Design Sélectionné
 - Intégrer le design sélectionné pour assurer une expérience utilisateur attrayante.
 
----
+## Installation
 
-**Note:**
-N'oubliez pas de consulter le fichier `README.md` régulièrement pour les mises à jour et les informations importantes sur le développement du projet. Bon travail à toute l'équipe !
+1. Clonez ce dépôt sur votre machine locale.
+2. Exécutez `composer install` pour installer les dépendances PHP du projet.
+3. Configurez votre serveur web pour pointer vers le dossier `public/` du projet.
+4. Accédez à votre site web via un navigateur pour commencer à utiliser Nuage Air.
+
+## Contribution
+
+Les contributions sont les bienvenues ! Veuillez créer une issue ou une pull request pour toute contribution.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
