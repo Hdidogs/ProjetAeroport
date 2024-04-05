@@ -39,8 +39,7 @@
                             <input type="submit" name="connexion" value="Se Connecter" class="sign-btn" />
 
                             <p class="text">
-                                Mot de passe oublié ?
-                                <a href="#">Besoin d'aide ?</a> pour se connecter
+                                <a href="user/MotdePasseOubliee.php">Mot de passe oublié ?</a>
                             </p>
                         </div>
                     </form>
@@ -119,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                    </div>
         </div>
     </main>
 

@@ -23,11 +23,9 @@ class Mail
             $mail->Port = 465;
 
             //Recipients
-<<<<<<< HEAD
+
             $mail->setFrom("nuageair.airport@gmail.com", 'NuageAir');
-=======
             $mail->setFrom("nuageair.airport@gmail.com", 'Nuage Air');
->>>>>>> b79973b26ab97838882d3c48317f9a68c031a3db
             $mail->addAddress($mailSend);
 
             //Content
