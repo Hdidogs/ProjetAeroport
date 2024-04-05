@@ -1,16 +1,3 @@
-<?php
-include 'src/bdd/SQLConnexion.php';
-include 'src/model/user/User.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
- $email = $_POST['email'];
- header('Location:  resetPasswordUser.php');
- exit;
-
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +5,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
  <h1>Password Reset</h1>
- <form method="POST" action="">
+ <form method="POST" action="UpdateMdp.php">
   <label for="email">Email:</label>
   <input type="email" name="email" id="email" required>
   <br>
-  <input type="submit" value="Reset Password">
+  <input type="submit" value="Reset">
  </form>
 </body>
 </html>
