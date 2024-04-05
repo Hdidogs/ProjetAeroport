@@ -33,3 +33,7 @@ button.dropdown-item:hover {
 .text-form {
     color: #bbb;
 }
+
+.content {
+    margin-top: 65px;
+}
