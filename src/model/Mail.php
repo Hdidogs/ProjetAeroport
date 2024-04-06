@@ -23,7 +23,6 @@ class Mail
             $mail->Port = 465;
 
             //Recipients
-
             $mail->setFrom("nuageair.airport@gmail.com", 'Nuage Air');
             $mail->addAddress($mailSend);
 
