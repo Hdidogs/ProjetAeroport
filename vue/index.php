@@ -166,7 +166,7 @@ $res = $req->fetchAll();
                             <?php
                             foreach ($res as $aeroport) {
                                 ?>
-                                <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
+                                <option value="<?=$aeroport['id_destination']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
                                 <?php
                             }
                             ?>
@@ -175,7 +175,7 @@ $res = $req->fetchAll();
                             <?php
                             foreach ($res as $aeroport) {
                                 ?>
-                                <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
+                                <option value="<?=$aeroport['id_destination']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
                                 <?php
                             }
                             ?>

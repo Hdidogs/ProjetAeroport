@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 26 mars 2024 à 08:35
+-- Généré le : sam. 06 avr. 2024 à 13:40
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -823,10 +823,10 @@ INSERT INTO `hotel` (`id_hotel`, `nom`, `ref_pays`, `ref_ville`, `adresse`, `tel
 DROP VIEW IF EXISTS `listvol`;
 CREATE TABLE IF NOT EXISTS `listvol` (
 `date` date
-,`heure_dep` time
 ,`heure_arr` time
-,`nom_aeroport` varchar(100)
+,`heure_dep` time
 ,`nom` varchar(100)
+,`nom_aeroport` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -2620,6 +2620,20 @@ INSERT INTO `vol` (`id_vol`, `date`, `heure_emb`, `heure_dep`, `heure_arr`, `pri
 -- --------------------------------------------------------
 
 --
+-- Doublure de structure pour la vue `v_aeroport`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `v_aeroport`;
+CREATE TABLE IF NOT EXISTS `v_aeroport` (
+`id_destination` int
+,`nom_aeroport` varchar(100)
+,`pays` varchar(100)
+,`ville` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Doublure de structure pour la vue `v_pourcentbycompagnie`
 -- (Voir ci-dessous la vue réelle)
 --
@@ -2649,6 +2663,16 @@ DROP TABLE IF EXISTS `listvol`;
 
 DROP VIEW IF EXISTS `listvol`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `listvol`  AS SELECT `v`.`date` AS `date`, `v`.`heure_dep` AS `heure_dep`, `v`.`heure_arr` AS `heure_arr`, `d`.`nom_aeroport` AS `nom_aeroport`, `c`.`nom` AS `nom` FROM ((`vol` `v` join `destination` `d` on((`v`.`ref_destination` = `d`.`id_destination`))) join `compagnie` `c` on((`c`.`id_companie` = `v`.`ref_compagnie`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `v_aeroport`
+--
+DROP TABLE IF EXISTS `v_aeroport`;
+
+DROP VIEW IF EXISTS `v_aeroport`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_aeroport`  AS SELECT `d`.`id_destination` AS `id_destination`, `d`.`nom_aeroport` AS `nom_aeroport`, `p`.`nom` AS `pays`, `v`.`nom` AS `ville` FROM ((`destination` `d` join `ville` `v` on((`v`.`id_ville` = `d`.`ref_ville`))) join `pays` `p` on((`v`.`ref_pays` = `p`.`id_pays`))) ;
 
 -- --------------------------------------------------------
 
