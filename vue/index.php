@@ -163,24 +163,6 @@ $res = $req->fetchAll();
                             <label class="text-form" for="depart">Départ</label>
                             <label class="text-form" for="destination">Arriver</label>
                             <br>
-                            <select class="form-vol-select" name="classe" id="classe" required>
-                                <option>Economique</option>
-                                <option>Eco Premium</option>
-                                <option>Affaires</option>
-                                <option>Première</option>
-                            </select>
-                            <br>
-                            <br>
-                            <label class="text-form" for="aller">Date D'Aller</label>
-                            <label class="text-form" for="retour">Date De Retour</label>
-                            <br>
-                            <input type="date" name="aller" id="aller" required>
-                            <input type="date" name="retour" id="retour" required>
-                            <br>
-                            <br>
-                            <label class="text-form" for="depart">Départ</label>
-                            <label class="text-form" for="destination">Arriver</label>
-                            <br>
                             <select id="depart" name="depart" required>
                                 <?php
                                 foreach ($res as $aeroport) {

@@ -23,9 +23,15 @@ if (isset($_GET['depart']) && isset($_GET['destination'])) {
     }
 }
 
+if (isset($_GET['aller']) && isset($_GET['retour'])) {
+    if ($_GET['aller'] <= $_GET['retour']) {
+        header("Location: ../index.php");
+    }
+}
+
 $conn = new SQLConnexion();
 
-$req = $conn->conbdd()->query("SELECT * FROM vol WHERE date = " . $_GET['depart'] . " and classe = " . $_GET['classe'] . " and ref_destination = " . $_GET['destination'] . " and ref_depart = " . $_GET['depart']);
+$req = $conn->conbdd()->query("SELECT * FROM vol WHERE date = " . $_GET['aller'] . " and classe = " . $_GET['classe'] . " and ref_destination = " . $_GET['destination'] . " and ref_depart = " . $_GET['depart']);
 $res = $req->fetchAll();
 ?>
 <!DOCTYPE html>
