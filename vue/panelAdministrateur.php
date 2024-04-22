@@ -311,7 +311,7 @@ $resCompagnie = $reqCompagnie->fetchAll();
                         <div class="col-lg-4 mb-4">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="text fw-bold m-0" style="color: black;">Compagnie</h6>
+                                    <h6 class="text fw-bold m-0" style="color: black;">Compagnie Revenue</h6>
                                 </div>
                                 <div class="card-body">
                                     <?php
