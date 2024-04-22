@@ -72,10 +72,12 @@ $res = $req->fetchAll();
             <form method="post" action="../../src/controleur/TraitementVol.php">
 
             <input type="hidden" name="nb" value="<?=$_GET['passager']?>">
-                <input type="hidden" name="nb" value="<?=$_GET['type']?>">
+                <input type="hidden" name="type" value="<?=$_GET['type']?>">
                 <input type="hidden" name="dep" value="<?=$_GET['depart']?>">
                 <input type="hidden" name="des" value="<?=$_GET['destination']?>">
                 <input type="hidden" name="retour" value="<?=$_GET['retour']?>">
+                <input type="hidden" name="aller" value="<?=$_GET['aller']?>">
+                <input type="hidden" name="classe" value="<?=$_GET['classe']?>">
             <tr>
                 <td><?php echo $row['date']; ?></td>
                 <td><?php echo $row['heure_dep']; ?></td>
