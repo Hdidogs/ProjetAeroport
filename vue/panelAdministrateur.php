@@ -118,9 +118,6 @@ $resCompagnie = $reqCompagnie->fetchAll();
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <h3 class="text-dark mb-0"><a href="index.php" style="text-decoration: none; color: black">Nuage Airport</a></h3>
-                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                        </form>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
@@ -146,7 +143,6 @@ $resCompagnie = $reqCompagnie->fetchAll();
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-light text-small" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-top-left-radius: 15px;border-top-right-radius: 15px;border: none;">
                                         <li><a class="dropdown-item" href="#">Votre Compte</a></li>
-                                        <li><a class="dropdown-item" href="#">Paramètre</a></li>
                                         <?php
                                         if ($_SESSION['fonction'] == 4) {
                                             ?>
@@ -312,7 +308,7 @@ $resCompagnie = $reqCompagnie->fetchAll();
                     <!-- Companie Earnings -->
 
                     <div class="row">
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-4 mb-4">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="text fw-bold m-0" style="color: black;">Compagnie</h6>
@@ -328,6 +324,71 @@ $resCompagnie = $reqCompagnie->fetchAll();
                                     <?php
                                     }
                                     ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 mb-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text fw-bold m-0" style="color: black;">Compagnie</h6>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn" style="background-color: #ffe0d2">Ajouter une compagnie</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-primary">Modifier une compagnie</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-danger">Supprimer une compagnie</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 mb-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text fw-bold m-0" style="color: black;">Destination</h6>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn" style="background-color: #ffe0d2">Ajouter une destination</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-primary">Modifier une destination</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-danger">Supprimer une destination</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 mb-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text fw-bold m-0" style="color: black;">Pays</h6>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn" style="background-color: #ffe0d2">Ajouter un pays</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-primary">Modifier un pays</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-danger">Supprimer un pays</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 mb-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text fw-bold m-0" style="color: black;">Ville</h6>
+                                </div>
+                                <div class="card-body">
+                                    <button class="btn" style="background-color: #ffe0d2">Ajouter une ville</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-primary">Modifier une ville</button>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-danger">Supprimer une ville</button>
                                 </div>
                             </div>
                         </div>
