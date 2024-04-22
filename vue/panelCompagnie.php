@@ -244,6 +244,7 @@ $resnc = $reqnc->fetchAll();
     </div>
 </div>
 
+<!-- Modals -->
 <div class="modal fade" id="ajoutvol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -310,7 +311,8 @@ $resnc = $reqnc->fetchAll();
                                 <?php
                             }
                             ?>
-                            <br>
+                        </select>
+                        <br>
                         <label class="form-label">Date</label>
                         <input type="date" class="form-control" name="date" required>
                         <label class="form-label">Heure_Embarquement</label>
@@ -333,7 +335,7 @@ $resnc = $reqnc->fetchAll();
                         <input type="text" class="form-control" name="avion" required>
                         <label class="form-label">Pilote</label>
                         <input type="text" class="form-control" name="pilote" required>
-                    </div>
+                    </div> <!-- This closing tag was missing -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -399,7 +401,7 @@ $resnc = $reqnc->fetchAll();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="ajoutavion" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
@@ -417,7 +419,7 @@ $resnc = $reqnc->fetchAll();
                 <div class="modal-body">
                     <div class="mb-3">
                         <select class="form-select" name="avion" required>
-                            <option selected>Selectionner un avion</option>
+                            <option>Selectionner un avion</option>
                             <?php
                             $reqa = $conn->conbdd()->prepare("SELECT * FROM `avion` WHERE ref_compagnie = :compagnie");
                             $reqa->execute(['compagnie'=>$_SESSION["compagnie"]]);
@@ -440,7 +442,7 @@ $resnc = $reqnc->fetchAll();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="modifieravion" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
@@ -475,7 +477,7 @@ $resnc = $reqnc->fetchAll();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="supprimeravion" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
@@ -512,7 +514,7 @@ $resnc = $reqnc->fetchAll();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="ajoutpilote" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
@@ -563,14 +565,47 @@ $resnc = $reqnc->fetchAll();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="modifierpilote" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="supprimerpilote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer Pilote</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementPilote.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" name="pilote" required>
+                            <option selected>Selectionner un pilote</option>
+                            <?php
+                            $reqp = $conn->conbdd()->prepare("SELECT * FROM `user` WHERE ref_fonction = :fonction and ref_compagnie = :compagnie");
+                            $reqp->execute(['fonction'=>2,'compagnie'=>$_SESSION["compagnie"]]);
+                            $resp = $reqp->fetchAll();
 
+                            foreach ($resp as $res) {
+                                ?>
+                                <option value="<?=$res['id_user']?>"><?=$res['id_user']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimerpilote" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready( function () {

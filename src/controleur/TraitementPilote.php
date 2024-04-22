@@ -1,7 +1,9 @@
 <?php
 include "../model/user/Pilote.php";
 
-if (isset($_POST['ajouterpilote'])) {
+session_start();
+
+if(array_key_exists("ajouterpilote", $_POST)){
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $date_naissance = htmlspecialchars($_POST['date_naissance']);
@@ -15,13 +17,13 @@ if (isset($_POST['ajouterpilote'])) {
     header('Location: ../../vue/panelCompagnie.php');
 }
 
-if (isset($_POST['supprimerpilote'])) {
+if (array_key_exists("supprimerpilote", $_POST)) {
     $id = htmlspecialchars($_POST['pilote']);
     Pilote::supprimerPilote($id);
     header('Location: ../../vue/panelCompagnie.php');
 }
 
-if (isset($_POST['modifierpilote'])) {
+if(array_key_exists("modifierpilote", $_POST)){
     $id = htmlspecialchars($_POST['pilote']);
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
