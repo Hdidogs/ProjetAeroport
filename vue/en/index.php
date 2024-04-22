@@ -1,5 +1,5 @@
 <?php
-include "../src/bdd/SQLConnexion.php";
+include "../../src/bdd/SQLConnexion.php";
 
 session_start();
 
