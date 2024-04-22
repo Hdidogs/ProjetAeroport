@@ -76,4 +76,46 @@ class Pilote extends User {
             return false;
         }
     }
+
+    public static function modifierPilote($id, $nom, $prenom, $date_naissance, $mail, $mdp, $ville, $fonction, $compagnie)
+    {
+        $bdd = new SQLConnexion();
+        $req = $bdd->conbdd()->prepare('UPDATE user SET nom = :nom, prenom = :prenom, date_naissance = :date_naissance, mail = :mail, mdp = :mdp, ville = :ville, ref_fonction = :fonction, ref_compagnie = :compagnie WHERE id_user = :id');
+        $req->execute(array(
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'date_naissance' => $date_naissance,
+            'mail' => $mail,
+            'mdp' => $mdp,
+            'ville' => $ville,
+            'fonction' => $fonction,
+            'compagnie' => $compagnie,
+            'id' => $id
+        ));
+    }
+
+    public static function ajouterPilote(string $nom, string $prenom, string $date_naissance, string $mail, string $mdp, string $ville, string $fonction, string $compagnie)
+    {
+        $bdd = new SQLConnexion();
+        $req = $bdd->conbdd()->prepare('INSERT INTO user(nom, prenom, date_naissance, mail, mdp, ville, ref_fonction, ref_compagnie) VALUES(:nom, :prenom, :date_naissance, :mail, :mdp, :ville, :fonction, :compagnie)');
+        $req->execute(array(
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'date_naissance' => $date_naissance,
+            'mail' => $mail,
+            'mdp' => $mdp,
+            'ville' => $ville,
+            'fonction' => $fonction,
+            'compagnie' => $compagnie
+        ));
+    }
+
+    public static function supprimerPilote($id)
+    {
+        $bdd = new SQLConnexion();
+        $req = $bdd->conbdd()->prepare('DELETE FROM user WHERE id_user = :id');
+        $req->execute(array(
+            'id' => $id
+        ));
+    }
 }

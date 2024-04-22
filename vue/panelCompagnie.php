@@ -101,13 +101,13 @@ $resnc = $reqnc->fetchAll();
                             <h6 class="text fw-bold m-0" style="color: black;">Vol</h6>
                         </div>
                         <div class="card-body">
-                            <button class="btn" style="background-color: #ffe0d2">Ajouter un vol</button>
+                            <button class="btn"  data-bs-toggle="modal" data-bs-target="#ajoutvol" style="background-color: #ffe0d2">Ajouter un vol</button>
                             <br>
                             <br>
-                            <button class="btn btn-primary">Modifier un vol</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiervol">Modifier un vol</button>
                             <br>
                             <br>
-                            <button class="btn btn-danger">Supprimer un vol</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimervol">Supprimer un vol</button>
                         </div>
                     </div>
                 </div>
@@ -118,13 +118,13 @@ $resnc = $reqnc->fetchAll();
                             <h6 class="text fw-bold m-0" style="color: black;">Avion</h6>
                         </div>
                         <div class="card-body">
-                            <button class="btn" style="background-color: #ffe0d2">Ajouter un avion</button>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#ajoutavion" style="background-color: #ffe0d2">Ajouter un avion</button>
                             <br>
                             <br>
-                            <button class="btn btn-primary">Modifier un avion</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifieravion">Modifier un avion</button>
                             <br>
                             <br>
-                            <button class="btn btn-danger">Supprimer un avion</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimeravion">Supprimer un avion</button>
                         </div>
                     </div>
                 </div>
@@ -135,13 +135,13 @@ $resnc = $reqnc->fetchAll();
                             <h6 class="text fw-bold m-0" style="color: black;">Pilote</h6>
                         </div>
                         <div class="card-body">
-                            <button class="btn" style="background-color: #ffe0d2">Ajouter un pilote</button>
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#ajoutpilote" style="background-color: #ffe0d2">Ajouter un pilote</button>
                             <br>
                             <br>
-                            <button class="btn btn-primary">Modifier un pilote</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifierpilote">Modifier un pilote</button>
                             <br>
                             <br>
-                            <button class="btn btn-danger">Supprimer un pilote</button>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimerpilote">Supprimer un pilote</button>
                         </div>
                     </div>
                 </div>
@@ -243,6 +243,331 @@ $resnc = $reqnc->fetchAll();
         </footer>
     </div>
 </div>
+
+<div class="modal fade" id="ajoutvol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Vol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementVol.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date" required>
+                        <label class="form-label">Heure_Embarquement</label>
+                        <input type="text" class="form-control" name="heure_embarquement" required>
+                        <label class="form-label">Heure_Départ</label>
+                        <input type="text" class="form-control" name="heure_départ" required>
+                        <label class="form-label">Heure_Arrivé</label>
+                        <input type="text" class="form-control" name="heure_arrivé" required>
+                        <label class="form-label">Prix</label>
+                        <input type="text" class="form-control" name="prix" required>
+                        <label class="form-label">Classe</label>
+                        <input type="text" class="form-control" name="classe" required>
+                        <label class="form-label">Compagnie</label>
+                        <input type="text" class="form-control" name="compagnie" required>
+                        <label class="form-label">Depart</label>
+                        <input type="text" class="form-control" name="depart" required>
+                        <label class="form-label">Destination</label>
+                        <input type="text" class="form-control" name="destination" required>
+                        <label class="form-label">Avion</label>
+                        <input type="text" class="form-control" name="avion" required>
+                        <label class="form-label">Pilote</label>
+                        <input type="text" class="form-control" name="pilote" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="ajoutvol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modifiervol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Vol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementVol.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" name="vol" required>
+                            <option selected>Selectionner un vol</option>
+                            <?php
+                            $reqv = $conn->conbdd()->prepare("SELECT * FROM `vol` WHERE ref_compagnie = :compagnie");
+                            $reqv->execute(['compagnie'=>$_SESSION["compagnie"]]);
+                            $resv = $reqv->fetchAll();
+
+                            foreach ($resv as $res) {
+                                ?>
+                                <option value="<?=$res['id_vol']?>"><?=$res['id_vol']?></option>
+                                <?php
+                            }
+                            ?>
+                            <br>
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date" required>
+                        <label class="form-label">Heure_Embarquement</label>
+                        <input type="text" class="form-control" name="heure_embarquement" required>
+                        <label class="form-label">Heure_Départ</label>
+                        <input type="text" class="form-control" name="heure_départ" required>
+                        <label class="form-label">Heure_Arrivé</label>
+                        <input type="text" class="form-control" name="heure_arrivé" required>
+                        <label class="form-label">Prix</label>
+                        <input type="text" class="form-control" name="prix" required>
+                        <label class="form-label">Classe</label>
+                        <input type="text" class="form-control" name="classe" required>
+                        <label class="form-label">Compagnie</label>
+                        <input type="text" class="form-control" name="compagnie" required>
+                        <label class="form-label">Depart</label>
+                        <input type="text" class="form-control" name="depart" required>
+                        <label class="form-label">Destination</label>
+                        <input type="text" class="form-control" name="destination" required>
+                        <label class="form-label">Avion</label>
+                        <input type="text" class="form-control" name="avion" required>
+                        <label class="form-label">Pilote</label>
+                        <input type="text" class="form-control" name="pilote" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="modifiervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="supprimervol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer Vol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementVol.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" name="vol" required>
+                            <option selected>Selectionner un vol</option>
+                            <?php
+                            $reqv = $conn->conbdd()->prepare("SELECT * FROM `vol` WHERE ref_compagnie = :compagnie");
+                            $reqv->execute(['compagnie'=>$_SESSION["compagnie"]]);
+                            $resv = $reqv->fetchAll();
+
+                            foreach ($resv as $res) {
+                                ?>
+                                <option value="<?=$res['id_vol']?>"><?=$res['id_vol']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ajoutavion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Avion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementAvion.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Immat</label>
+                        <input type="text" class="form-control" name="nom" required>
+                        <label class="form-label">NbPlcace</label>
+                        <input type="text" class="form-control" name="nbplace" required>
+                        <label class="form-label">RefModel</label>
+                        <input type="text" class="form-control" name="compagnie" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modifieravion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Avion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementAvion.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" name="avion" required>
+                            <option selected>Selectionner un avion</option>
+                            <?php
+                            $reqa = $conn->conbdd()->prepare("SELECT * FROM `avion` WHERE ref_compagnie = :compagnie");
+                            $reqa->execute(['compagnie'=>$_SESSION["compagnie"]]);
+                            $resa = $reqa->fetchAll();
+
+                            foreach ($resa as $res) {
+                                ?>
+                                <option value="<?=$res['id_avion']?>"><?=$res['id_avion']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <label class="form-label">Immat</label>
+                        <input type="text" class="form-control" name="nom" required>
+                        <label class="form-label">NbPlcace</label>
+                        <input type="text" class="form-control" name="nbplace" required>
+                        <label class="form-label">RefModel</label>
+                        <input type="text" class="form-control" name="compagnie" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="supprimeravion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer Avion</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementAvion.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" name="avion" required>
+                            <option selected>Selectionner un avion</option>
+                            <?php
+                            $reqa = $conn->conbdd()->prepare("SELECT * FROM `avion` WHERE ref_compagnie = :compagnie");
+                            $reqa->execute(['compagnie'=>$_SESSION["compagnie"]]);
+                            $resa = $reqa->fetchAll();
+
+                            foreach ($resa as $res) {
+                                ?>
+                                <option value="<?=$res['id_avion']?>"><?=$res['id_avion']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ajoutpilote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Pilote</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementPilote.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nom</label>
+                        <input type="text" class="form-control" name="nom" required>
+                        <label class="form-label">Prenom</label>
+                        <input type="text" class="form-control" name="prenom" required>
+                        <label class="form-label">DateNaissance</label>
+                        <input type="date" class="form-control" name="date_naissance" required>
+                        <label class="form-label">Mail</label>
+                        <input type="text" class="form-control" name="mail" required>
+                        <label class="form-label">Ville</label>
+                        <input type="text" class="form-control" name="ville" required>
+                        <input type="hidden" value="2" name="fonction" required>
+                        <input type="hidden" value="<?=$_SESSION["compagnie"]?>" name="compagnie" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modifierpilote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Pilote</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="../src/controleur/TraitementPilote.php">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <select class="form-select" name="pilote" required>
+                            <option selected>Selectionner un pilote</option>
+                            <?php
+                            $reqp = $conn->conbdd()->prepare("SELECT * FROM `user` WHERE ref_fonction = :fonction and ref_compagnie = :compagnie");
+                            $reqp->execute(['fonction'=>2,'compagnie'=>$_SESSION["compagnie"]]);
+                            $resp = $reqp->fetchAll();
+
+                            foreach ($resp as $res) {
+                                ?>
+                                <option value="<?=$res['id_user']?>"><?=$res['id_user']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <label class="form-label">Nom</label>
+                        <input type="text" class="form-control" name="nom" required>
+                        <label class="form-label">Prenom</label>
+                        <input type="text" class="form-control" name="prenom" required>
+                        <label class="form-label">DateNaissance</label>
+                        <input type="date" class="form-control" name="date_naissance" required>
+                        <label class="form-label">Mail</label>
+                        <input type="text" class="form-control" name="mail" required>
+                        <label class="form-label">Mdp</label>
+                        <input type="text" class="form-control" name="mdp" required>
+                        <label class="form-label">Ville</label>
+                        <input type="text" class="form-control" name="ville" required>
+                        <label class="form-label">RefFonction</label>
+                        <input type="text" class="form-control" name="fonction" required>
+                        <label class="form-label">RefCompagnie</label>
+                        <input type="text" class="form-control" name="compagnie" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="supprimervol" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
     $(document).ready( function () {
         $('#pilote').DataTable();
