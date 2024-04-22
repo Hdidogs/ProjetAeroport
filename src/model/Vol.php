@@ -212,15 +212,11 @@ class Vol
         $req->execute(array('id' => $id));
     }
 
-    public static function mettreAJourVol($id, $destination, $date, $company, $allerRetour, $depart, $arrivee, $billet, $nombreBillet)
+    public static function modifierVol($id, $depart, $arrivee, $billet, $nombreBillet)
     {
         $bdd = new SQLConnexion();
-        $req = $bdd->conbdd()->prepare('UPDATE vol SET destination = :destination, date = :date, company = :company, allerRetour = :allerRetour, depart = :depart, arrivee = :arrivee, billet = :billet, nombreBillet = :nombreBillet WHERE id = :id');
+        $req = $bdd->conbdd()->prepare('UPDATE vol SET depart = :depart, arrivee = :arrivee, billet = :billet, nombreBillet = :nombreBillet WHERE id_vol = :id');
         $req->execute(array(
-            'destination' => $destination,
-            'date' => $date,
-            'company' => $company,
-            'allerRetour' => $allerRetour,
             'depart' => $depart,
             'arrivee' => $arrivee,
             'billet' => $billet,
