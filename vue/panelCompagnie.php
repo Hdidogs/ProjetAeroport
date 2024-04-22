@@ -553,10 +553,8 @@ $resnc = $reqnc->fetchAll();
                         <input type="text" class="form-control" name="mdp" required>
                         <label class="form-label">Ville</label>
                         <input type="text" class="form-control" name="ville" required>
-                        <label class="form-label">RefFonction</label>
-                        <input type="text" class="form-control" name="fonction" required>
-                        <label class="form-label">RefCompagnie</label>
-                        <input type="text" class="form-control" name="compagnie" required>
+                        <input type="hidden" value="2" name="fonction" required>
+                        <input type="hidden" value="<?=$_SESSION["compagnie"]?>" name="compagnie" required>
                     </div>
                 </div>
                 <div class="modal-footer">
