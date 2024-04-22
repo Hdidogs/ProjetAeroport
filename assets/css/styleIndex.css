@@ -37,3 +37,8 @@ button.dropdown-item:hover {
 .content {
     margin-top: 65px;
 }
+
+.content-card {
+    margin: 15px;
+    margin-top: 0px;
+}

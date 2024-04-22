@@ -71,32 +71,34 @@ $resv = $reqv->fetchAll();
                     <div class="card-header py-3">
                         <h6 class="text fw-bold m-0" style="color: black;">Prochain Départ</h6>
                     </div>
-                    <table id="volList">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Heure de Départ</th>
-                            <th>Heure d'arriver</th>
-                            <th>Nom de l'Aéroport</th>
-                            <th>Nom de la compagnie</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($resv as $vol) {
-                            ?>
+                    <div class="content-card">
+                        <table id="volList">
+                            <thead>
                             <tr>
-                                <td><?=$vol['date']?></td>
-                                <td><?=$vol['heure_dep']?></td>
-                                <td><?=$vol['heure_arr']?></td>
-                                <td><?=$vol['nom_aeroport']?></td>
-                                <td><?=$vol['nom']?></td>
+                                <th>Date</th>
+                                <th>Heure de Départ</th>
+                                <th>Heure d'arriver</th>
+                                <th>Nom de l'Aéroport</th>
+                                <th>Nom de la compagnie</th>
                             </tr>
+                            </thead>
+                            <tbody>
                             <?php
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                            foreach ($resv as $vol) {
+                                ?>
+                                <tr>
+                                    <td><?=$vol['date']?></td>
+                                    <td><?=$vol['heure_dep']?></td>
+                                    <td><?=$vol['heure_arr']?></td>
+                                    <td><?=$vol['nom_aeroport']?></td>
+                                    <td><?=$vol['nom']?></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -166,57 +168,83 @@ $resv = $reqv->fetchAll();
             </div>
         </div>
 
-        <section class="section" style="background: var(--bs-body-bg); " id="reservation">
+        <section id="section" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
             <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="" style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;border-top-left-radius: 25px;border-top-right-radius: 25px; margin: 10px;">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="text fw-bold m-0" style="color: black;">Réserver un vol</h6>
+                    </div>
+                    <div class="content-card">
                         <form action="vol/volsResult.php" method="get">
                             <br>
-                            <label class="text-form" for="type">Type de Trajet</label>
-                            <label class="text-form" for="classe">Classe</label>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><label class="text-form" for="type">Type de Trajet</label></th>
+                                        <th><label class="text-form" for="classe">Classe</label></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><select class="form-vol-select" name="type" id="type" required>
+                                                <option>Aller - Retour</option>
+                                                <option>Aller Simple</option>
+                                            </select></td>
+                                        <td><select class="form-vol-select" name="classe" id="classe" required>
+                                                <option>Economique</option>
+                                                <option>Eco Premium</option>
+                                                <option>Affaires</option>
+                                                <option>Première</option>
+                                            </select></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <br>
-                            <select class="form-vol-select" name="type" id="type" required>
-                                <option>Aller - Retour</option>
-                                <option>Aller Simple</option>
-                            </select>
-
-                            <select class="form-vol-select" name="classe" id="classe" required>
-                                <option>Economique</option>
-                                <option>Eco Premium</option>
-                                <option>Affaires</option>
-                                <option>Première</option>
-                            </select>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th><label class="text-form" for="aller">Date D'Aller</label></th>
+                                    <th><label class="text-form" for="retour">Date De Retour</label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="date" name="aller" id="aller" required></td>
+                                    <td><input type="date" name="retour" id="retour" required></td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <br>
-                            <br>
-                            <label class="text-form" for="aller">Date D'Aller</label>
-                            <label class="text-form" for="retour">Date De Retour</label>
-                            <br>
-                            <input type="date" name="aller" id="aller" required>
-                            <input type="date" name="retour" id="retour" required>
-                            <br>
-                            <br>
-                            <label class="text-form" for="depart">Départ</label>
-                            <label class="text-form" for="destination">Arriver</label>
-                            <br>
-                            <select id="depart" name="depart" required>
-                                <?php
-                                foreach ($res as $aeroport) {
-                                    ?>
-                                    <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                            <select id="destination" name="destination" style="border-color: #ffe0d2" required>
-                                <?php
-                                foreach ($res as $aeroport) {
-                                    ?>
-                                    <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                            <br>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th><label class="text-form" for="depart">Départ</label></th>
+                                    <th><label class="text-form" for="destination">Arriver</label></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><select id="depart" name="depart" required>
+                                            <?php
+                                            foreach ($res as $aeroport) {
+                                                ?>
+                                                <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select></td>
+                                    <td><select id="destination" name="destination" style="border-color: #ffe0d2" required>
+                                            <?php
+                                            foreach ($res as $aeroport) {
+                                                ?>
+                                                <option value="<?=$aeroport['id']?>"><?=$aeroport['ville'] . " - " . $aeroport['pays']?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select></td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <br>
                             <label for="passager" class="text-form">Passagers</label>
                             <br>

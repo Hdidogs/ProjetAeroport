@@ -19,13 +19,13 @@ if (!isset($_GET['type'])) {
 
 if (isset($_GET['depart']) && isset($_GET['destination'])) {
     if ($_GET['depart'] == $_GET['destination']) {
-        header("Location: ../index.php");
+        header("Location: ../index.php#des");
     }
 }
 
 if (isset($_GET['aller']) && isset($_GET['retour'])) {
     if ($_GET['aller'] <= $_GET['retour']) {
-        header("Location: ../index.php");
+        header("Location: ../index.php#date");
     }
 }
 
