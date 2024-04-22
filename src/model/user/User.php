@@ -1,5 +1,6 @@
 <?php
-abstract class User {
+abstract class User
+{
     private $id;
     private $nom;
     private $prenom;
@@ -8,13 +9,15 @@ abstract class User {
     private $date;
     private $ville;
 
-    function __construct(array $info) {
+    function __construct(array $info)
+    {
         $this->hydrate($info);
     }
 
-    public function hydrate(array $donnees) {
+    public function hydrate(array $donnees)
+    {
         foreach ($donnees as $key => $value) {
-            $method = 'set'.ucfirst($key);
+            $method = 'set' . ucfirst($key);
 
             if (method_exists($this, $method)) {
                 $this->$method($value);
@@ -134,7 +137,8 @@ abstract class User {
         $this->ville = $ville;
     }
 
-    public static function CONNEXION($mail, $mdp) {
+    public static function CONNEXION($mail, $mdp)
+    {
         $conn = new SQLConnexion();
 
         if ($mail == "root") {
@@ -205,11 +209,12 @@ abstract class User {
         }
     }
 
-    public static function CHECKIFMAILEXIST($mail): bool {
+    public static function CHECKIFMAILEXIST($mail): bool
+    {
         $conn = new SQLConnexion();
 
         $check_mail = $conn->conbdd()->prepare("SELECT mail FROM user WHERE mail = :mail");
-        $check_mail->execute(['mail'=>$mail]);
+        $check_mail->execute(['mail' => $mail]);
 
         $mail = $check_mail->fetchAll();
 
@@ -218,5 +223,30 @@ abstract class User {
         } else {
             return false;
         }
+    }
+
+    public static function ModifierUser($id, $nom, $prenom, $mail, $mdp, $ville)
+    {
+        $conn = new SQLConnexion();
+
+        $mdp = password_hash($mdp, PASSWORD_DEFAULT);
+
+        $res = $conn->conbdd()->prepare("UPDATE user SET nom = :nom, prenom = :prenom, mail = :mail, mdp = :mdp, ville = :ville WHERE id_user = :id");
+        $res->execute(['nom' => $nom, 'prenom' => $prenom, 'mail' => $mail, 'mdp' => $mdp, 'ville' => $ville, 'id' => $id]);
+
+        header("Location: ../../vue/votreCompte.php");
+    }
+
+    public static function SupprimerUser($id, $nom, $prenom, $mail, $mdp, $ville)
+    {
+        $conn = new SQLConnexion();
+
+        $res = $conn->conbdd()->prepare("DELETE FROM user WHERE id_user = :id");
+        $res->execute(['id' => $id]);
+
+        session_start();
+        session_destroy();
+
+        header("Location: ../../vue/index.php");
     }
 }
