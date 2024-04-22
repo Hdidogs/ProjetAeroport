@@ -2,6 +2,7 @@
 include "../../src/bdd/SQLConnexion.php";
 
 session_start();
+//SELECT (a.nb_place - SUM(nbr_billet)) AS place_restante FROM `uservol` INNER JOIN vol as v ON ref_vol = v.id_vol INNER JOIN avion as a ON a.id_avion = v.ref_avion WHERE ref_vol =
 
 if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
     $id = $_SESSION["id_user"];
@@ -23,20 +24,14 @@ if (isset($_GET['depart']) && isset($_GET['destination'])) {
     }
 }
 
-if (isset($_GET['aller']) && isset($_GET['retour'])) {
-    if ($_GET['aller'] <= $_GET['retour']) {
-        header("Location: ../index.php");
-    }
-}
-
 $conn = new SQLConnexion();
 
-$req = $conn->conbdd()->query("SELECT * FROM vol WHERE date = " . $_GET['aller'] . " and classe = " . $_GET['classe'] . " and ref_destination = " . $_GET['destination'] . " and ref_depart = " . $_GET['depart']);
+$req = $conn->conbdd()->prepare("SELECT * FROM vol WHERE date = :aller and classe = :classe and ref_destination = :destination and ref_depart = :depart");
+$req->execute(['aller'=>$_GET['aller'], 'classe'=>$_GET['classe'], "destination"=>$_GET['destination'], 'depart'=>$_GET['depart']]);
 $res = $req->fetchAll();
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="fr">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -53,8 +48,7 @@ $res = $req->fetchAll();
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
-<body> 
-
+<body>
 <footer class="text-white bg-dark" style="">
     <div class="container py-4 py-lg-5">
         <div class="row justify-content-center">
