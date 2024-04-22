@@ -62,13 +62,13 @@ class Destination
         ));
     }
 
-    public function updateDestination($conn, $ref_ville)
+    public function updateDestination($conn, $id)
     {
         // Mettre à jour la table destination
-        $query = $conn->conbdd()->prepare("UPDATE destination SET nom_aeroport = :nomAeroport WHERE ref_ville = :ville");
+        $query = $conn->conbdd()->prepare("UPDATE destination SET nom_aeroport = :nom_aeroport WHERE id_destination = :id_destination");
         $query->execute(array(
-            'nomAeroport' => $this->nomAeroport,
-            'ville' => $ref_ville
+            'nom_aeroport' => $this->getNomAeroport(),
+            'id_destination' => $id
         ));
     }
     public function deleteDestination($conn , $ref_ville)

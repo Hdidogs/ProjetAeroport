@@ -24,17 +24,14 @@ if (array_key_exists("modifiercompagnie", $_POST)) {
         "nomcompagnie" => $_POST['nomcompagnie'],
         "numero" => $_POST['numero'],
     ]);
-    $compagnie->updateCompagnie($conn, $_POST['id_compagnie']);
+    $compagnie->updateCompagnie($conn, $_POST['id_companie']);
     header("Location: ../../vue/panelAdministrateur.php");
     exit();
 }
 
 if (array_key_exists("supprimercompagnie", $_POST)) {
-    $compagnie = new Compagnie([
-        "nomcompagnie" => $_POST['nomcompagnie'],
-        "numero" => $_POST['numero'],
-    ]);
-    $compagnie->deleteCompagnie($conn, $_POST['id_compagnie']);
+    $compagnie = new Compagnie(['id' => $_POST['id_companie']]);
+    $compagnie->deleteCompagnie($conn, $_POST['id_companie']);
     header("Location: ../../vue/panelAdministrateur.php");
     exit();
 }

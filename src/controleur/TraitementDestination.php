@@ -21,9 +21,9 @@ if (array_key_exists("ajoutdestination", $_POST)) {
 if (array_key_exists("modifierdestination", $_POST)) {
     $destination = new Destination([
         "nomaeroport" => $_POST['nomaeroport'],
-        "ref_ville" => $_POST['nomville'],
+        "nomville" => $_POST['nomville'],
     ]);
-    $destination->updateDestination($conn, $_POST['ref_ville']);
+    $destination->updateDestination($conn, $_POST['id_destination']);
     header("Location: ../../vue/panelAdministrateur.php");
 }
 

@@ -62,16 +62,21 @@ public function insertCompagnie($conn)
 
     public function updateCompagnie($conn,$id)
     {
-        $query = $conn->conbdd()->prepare("UPDATE compagnie SET nom = :nom , numero = :numero WHERE id = :id");
+        $query = $conn->conbdd()->prepare("UPDATE compagnie SET nom = :nom , numero = :numero WHERE id_companie = :id_companie");
         $query->execute(array(
             'nom' => $this->nomCompagnie,
             'numero' => $this->numero,
-            'id' => $id
+            'id_companie' => $id
         ));
     }
 
     public function deleteCompagnie($conn,$id)
     {
+        $query = $conn->conbdd()->prepare("DELETE FROM vol WHERE ref_compagnie = :id_companie");
+        $query->execute(array(
+            'id_companie' => $id
+        ));
+
         $query = $conn->conbdd()->prepare("DELETE FROM compagnie WHERE id_companie = :id_companie");
         $query->execute(array(
             'id_companie' => $id
