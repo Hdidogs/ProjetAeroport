@@ -1,6 +1,6 @@
 <?php
 
-include "../../bdd/SQLConnexion.php";
+include "../bdd/SQLConnexion.php";
 
 class Vol
 {
@@ -243,6 +243,17 @@ class Vol
             'billet' => $billet,
             'nombreBillet' => $nombreBillet,
             'id' => $id
+        ));
+    }
+
+    public static function reserveVol($id_user, $id_vol, $nb)
+    {
+        $bdd = new SQLConnexion();
+        $req = $bdd->conbdd()->prepare('INSERT INTO uservol (ref_user, ref_vol, nbr_billet) VALUES (:user, :vol, :nb)');
+        $req->execute(array(
+            'user' => $id_user,
+            'vol' => $id_vol,
+            'nb' => $nb,
         ));
     }
 }

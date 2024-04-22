@@ -45,6 +45,7 @@ $resv = $reqv->fetchAll();
 
 <body>
     <div class="content">
+        <!--
         <div class="carousel slide" data-bs-ride="false" id="carousel-1">
             <div class="carousel-inner">
                 <div class="carousel-item active"><img class="w-100 d-block" src="../assets/images/58796297-43317668.jpg"
@@ -64,6 +65,7 @@ $resv = $reqv->fetchAll();
                     data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1"
                     data-bs-slide-to="2"></button></div>
         </div>
+        -->
 
         <section id="prochain" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
             <div class="container position-relative">
@@ -187,8 +189,8 @@ $resv = $reqv->fetchAll();
                                 <tbody>
                                     <tr>
                                         <td><select class="form-vol-select" name="type" id="type" required>
-                                                <option>Aller - Retour</option>
-                                                <option>Aller Simple</option>
+                                                <option value="ar">Aller - Retour</option>
+                                                <option value="as">Aller Simple</option>
                                             </select></td>
                                         <td><select class="form-vol-select" name="classe" id="classe" required>
                                                 <option>Economique</option>
@@ -452,6 +454,10 @@ $resv = $reqv->fetchAll();
                                     ?>
                                     <li><a class="dropdown-item" href="panelAdministrateur.php">Panel Administration</a>
                                     </li>
+                                    <?php
+                                } else if ($_SESSION['fonction'] == 3) {
+                                    ?>
+                                    <li><a class="dropdown-item" href="panelCompagnie.php">Panel Compagnie</a></li>
                                     <?php
                                 }
                                 ?>

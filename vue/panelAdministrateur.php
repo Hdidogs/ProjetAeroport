@@ -13,8 +13,6 @@ if (isset($_SESSION["id_user"])) {
     header("Location: connexion.php");
 }
 
-
-
 if (array_key_exists("ans", $_GET)) {
     $ans = $_GET["ans"];
 } else {
