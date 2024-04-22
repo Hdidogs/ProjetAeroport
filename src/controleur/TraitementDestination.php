@@ -1,4 +1,5 @@
 <?php
+include '../model/Destination.php';
 include "../bdd/SQLConnexion.php";
 //session_start();
 $conn = new SQLConnexion();
@@ -8,35 +9,30 @@ $conn = new SQLConnexion();
     //exit();
 //}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupération des données du formulaire
-    $nomAeroport = $_POST["nomAeroport"];
-    $pays = $_POST["nompays"];
-    $ville = $_POST["nomville"];
-
-    // Insérer les données dans la base de données
-    $query = $conn->conbdd()->prepare("INSERT INTO pays (nom) VALUES (:nom)");
-    $query->execute(array(
-       'nom' => $pays
-    ));
-
-    $idpays = $conn->conbdd()->lastInsertId();
-
-    $query = $conn->conbdd()->prepare("INSERT INTO ville(nom,ref_pays) VALUES (:nom,:pays)");
-    $query->execute(array(
-       'nom' => $ville,
-        'pays' => $idpays
-    ));
-
-    $idville = $conn->conbdd()->lastInsertId();
-
-    $query = $conn->conbdd()->prepare("INSERT INTO destination (nom_aeroport, ref_ville) VALUES (:nomAeroport,:ville)");
-    $query->execute(array(
-        'nomAeroport' => $nomAeroport,
-        'ville' => $idville
-    ));
-
-    // Redirection après l'ajout des données
-    header("Location: ../../vue/index.php");
-    exit();
+if (array_key_exists("ajoutdestination", $_POST)) {
+    $destination = new Destination([
+        "nomaeroport" => $_POST['nomaeroport'],
+        "ref_ville" => $_POST['nomville'],
+    ]);
+    $destination->insertDestination($conn, $_POST['nomville']);
+    header("Location: ../../vue/panelAdministrateur.php");
 }
+
+if (array_key_exists("modifierdestination", $_POST)) {
+    $destination = new Destination([
+        "nomaeroport" => $_POST['nomaeroport'],
+        "ref_ville" => $_POST['nomville'],
+    ]);
+    $destination->updateDestination($conn, $_POST['ref_ville']);
+    header("Location: ../../vue/panelAdministrateur.php");
+}
+
+if (array_key_exists("supprimerdestination", $_POST)) {
+    $destination = new Destination([
+        "nomaeroport" => $_POST['nomaeroport'],
+        "ref_ville" => $_POST['nomville'],
+    ]);
+    $destination->deleteDestination($conn, $_POST['ref_ville']);
+    header("Location: ../../vue/panelAdministrateur.php");
+}
+?>
