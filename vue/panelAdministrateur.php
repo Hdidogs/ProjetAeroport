@@ -13,8 +13,6 @@ if (isset($_SESSION["id_user"])) {
     header("Location: connexion.php");
 }
 
-
-
 if (array_key_exists("ans", $_GET)) {
     $ans = $_GET["ans"];
 } else {
@@ -103,12 +101,15 @@ $resCompagnie = $reqCompagnie->fetchAll();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Liens vers les fichiers JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="../assets/js/reservationVol.js"></script>
 </head>
 
 <body id="page-top">
@@ -333,13 +334,13 @@ $resCompagnie = $reqCompagnie->fetchAll();
                                     <h6 class="text fw-bold m-0" style="color: black;">Compagnie</h6>
                                 </div>
                                 <div class="card-body">
-                                    <button class="btn" style="background-color: #ffe0d2">Ajouter une compagnie</button>
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#ajoutcompagnie" style="background-color: #ffe0d2">Ajouter une compagnie</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-primary">Modifier une compagnie</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifiercompagnie">Modifier une compagnie</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-danger">Supprimer une compagnie</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimercompagnie">Supprimer une compagnie</button>
                                 </div>
                             </div>
                         </div>
@@ -349,13 +350,13 @@ $resCompagnie = $reqCompagnie->fetchAll();
                                     <h6 class="text fw-bold m-0" style="color: black;">Destination</h6>
                                 </div>
                                 <div class="card-body">
-                                    <button class="btn" style="background-color: #ffe0d2">Ajouter une destination</button>
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#ajoutdestination" style="background-color: #ffe0d2">Ajouter une destination</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-primary">Modifier une destination</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifierdestination">Modifier une destination</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-danger">Supprimer une destination</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimerdestination">Supprimer une destination</button>
                                 </div>
                             </div>
                         </div>
@@ -366,13 +367,13 @@ $resCompagnie = $reqCompagnie->fetchAll();
                                     <h6 class="text fw-bold m-0" style="color: black;">Pays</h6>
                                 </div>
                                 <div class="card-body">
-                                    <button class="btn" style="background-color: #ffe0d2">Ajouter un pays</button>
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#ajoutpays" style="background-color: #ffe0d2">Ajouter un pays</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-primary">Modifier un pays</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifierpays">Modifier un pays</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-danger">Supprimer un pays</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimerpays">Supprimer un pays</button>
                                 </div>
                             </div>
                         </div>
@@ -382,13 +383,13 @@ $resCompagnie = $reqCompagnie->fetchAll();
                                     <h6 class="text fw-bold m-0" style="color: black;">Ville</h6>
                                 </div>
                                 <div class="card-body">
-                                    <button class="btn" style="background-color: #ffe0d2">Ajouter une ville</button>
+                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#ajoutville" style="background-color: #ffe0d2">Ajouter une ville</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-primary">Modifier une ville</button>
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifierville">Modifier une ville</button>
                                     <br>
                                     <br>
-                                    <button class="btn btn-danger">Supprimer une ville</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#supprimerville">Supprimer une ville</button>
                                 </div>
                             </div>
                         </div>
@@ -443,8 +444,393 @@ $resCompagnie = $reqCompagnie->fetchAll();
             </footer>
         </div>
     </div>
-    <script src="../assets/js/chart.min.js"></script>
-    <script src="../assets/js/bs-init.js"></script>
-    <script src="../assets/js/theme.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ajoutcompagnie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Compagnie</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementCompagnie.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Nom de la compagnie</label>
+                            <input type="text" class="form-control" name="nomcompagnie" required>
+                            <label class="form-label">Numero</label>
+                            <input type="text" class="form-control" name="numero" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="ajoutcompagnie" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modifiercompagnie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Compagnie</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementCompagnie.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <select class="form-vol-select" name="id_companie" id="id_companie" required>
+                                <?php $sql = "SELECT nom,id_companie FROM compagnie";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $compagnies = $stmt->fetchAll(); ?>
+                                <?php foreach ($compagnies as $compagnie): ?>
+                                    <option value="<?php echo $compagnie['id_companie']; ?>">
+                                        <?php echo $compagnie['id_companie']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br>
+                            <label class="form-label">Nom de la compagnie</label>
+                            <input type="text" name="nomcompagnie" class="form-control" required>
+                            <label class="form-label">Numero</label>
+                            <input type="text" class="form-control" name="numero" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="modifiercompagnie" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="supprimercompagnie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer Compagnie</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementCompagnie.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <select class="form-vol-select" name="id_companie" id="id_companie" required>
+                                <?php $sql = "SELECT nom,id_companie FROM compagnie";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $compagnies = $stmt->fetchAll(); ?>
+                                <?php foreach ($compagnies as $compagnie): ?>
+                                    <option value="<?php echo $compagnie['id_companie']; ?>">
+                                        <?php echo $compagnie['id_companie']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="supprimercompagnie" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ajoutdestination" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Destination</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementDestination.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label>">Nom de l'aeroport</label>
+                            <input type="text" class="form-control" name="nomaeroport" required>
+                            <label class="form-label>">Ville</label>
+                            <input type="text" class="form-control" name="nomville" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="ajoutdestination" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modifierdestination" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Destination</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="../src/controleur/TraitementDestination.php">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="id_destination"></label>
+                                <select class="form-vol-select" name="id_destination" id="id_destination" required>
+                                    <?php $sql = "SELECT nom_aeroport,id_destination FROM destination";
+                                    $stmt = $conn->conbdd()->prepare($sql);
+                                    $stmt->execute();
+                                    $destinations = $stmt->fetchAll(); ?>
+                                    <?php foreach ($destinations as $destination): ?>
+                                        <option value="<?php echo $destination['id_destination']; ?>">
+                                            <?php echo $destination['id_destination']; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <br>
+                                <label class="form-label">Nom de l'aeroport</label>
+                                <input type="text" class="form-control" name="nomaeroport" required>
+                                <label class="form-label">Ville</label>
+                                <input type="text" class="form-control" name="nomville" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="modifierdestination" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="supprimerdestination" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer Destination</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementDestination.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <select class="form-vol-select" name="id_destination" id="id_destination" required>
+                                <?php $sql = "SELECT nom_aeroport,id_destination FROM destination";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $destinations = $stmt->fetchAll(); ?>
+                                <?php foreach ($destinations as $destination): ?>
+                                    <option value="<?php echo $destination['id_destination']; ?>">
+                                        <?php echo $destination['id_destination']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br>
+                            <label class="form-label>">Nom de l'aeroport</label>
+                            <input type="text" class="form-control" name="nomaeroport" required>
+                            <label class="form-label>">Ville</label>
+                            <input type="text" class="form-control" name="nomville" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="supprimerdestination" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ajoutpays" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Pays</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form method="post" action="../src/controleur/TraitementPays.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label>">Nom du Pays</label>
+                            <input type="text" class="form-control" name="nompays" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="ajoutpays" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modifierpays" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Pays</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementPays.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <select class="form-vol-select" name="id_pays" id="id_pays" required>
+                                <?php $sql = "SELECT id_pays,nom FROM pays";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $pays = $stmt->fetchAll(); ?>
+                                <?php foreach ($pays as $pay): ?>
+                                    <option value="<?php echo $pay['id_pays']; ?>">
+                                        <?php echo $pay['id_pays']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br>
+                            <label class="form-label>">Nom du Pays</label>
+                            <input type="text" class="form-control" name="nompays" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="modifierpays" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="supprimerpays" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Pays</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementPays.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <select class="form-vol-select" name="id_pays" id="id_pays" required>
+                                <?php $sql = "SELECT id_pays,nom FROM pays";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $pays = $stmt->fetchAll(); ?>
+                                <?php foreach ($pays as $pay): ?>
+                                    <option value="<?php echo $pay['id_pays']; ?>">
+                                        <?php echo $pay['id_pays']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="supprimerpays" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ajoutville" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout Ville</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementVille.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label>">Nom de le Ville</label>
+                            <input type="text" class="form-control" name="nomville" required>
+                            <label class="form-label>">Pays</label>
+                            <input type="text" class="form-control" name="refpays" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="ajoutville" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modifierville" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier Ville</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementVille.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Ville</label>
+                            <select class="form-vol-select" name="id_ville" id="id_ville" required>
+                                <?php $sql = "SELECT id_ville,nom,ref_pays FROM ville";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $villes = $stmt->fetchAll(); ?>
+                                <?php foreach ($villes as $ville): ?>
+                                    <option value="<?php echo $ville['id_ville']; ?>">
+                                        <?php echo $ville['nom']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br>
+                            <label class="form-label">Nom de la Ville</label>
+                            <input type="text" class="form-control" name="nomville" required>
+                            <label class="form-label">Pays</label>
+                            <input type="text" class="form-control" name="refpays" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="modifierville" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="supprimerville" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer Ville</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementVille.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Ville</label>
+                            <select class="form-vol-select" name="id_ville" id="id_ville" required>
+                                <?php $sql = "SELECT id_ville,nom,ref_pays FROM ville";
+                                $stmt = $conn->conbdd()->prepare($sql);
+                                $stmt->execute();
+                                $villes = $stmt->fetchAll(); ?>
+                                <?php foreach ($villes as $ville): ?>
+                                    <option value="<?php echo $ville['id_ville']; ?>">
+                                        <?php echo $ville['nom']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="supprimerville" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+            <script src="../assets/js/chart.min.js"></script
+            <script src="../assets/js/bs-init.js"></script>
+            <script src="../assets/js/theme.js"></script>
 </body>
 </html>

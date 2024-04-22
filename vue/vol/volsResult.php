@@ -2,7 +2,6 @@
 include "../../src/bdd/SQLConnexion.php";
 
 session_start();
-//SELECT (a.nb_place - SUM(nbr_billet)) AS place_restante FROM `uservol` INNER JOIN vol as v ON ref_vol = v.id_vol INNER JOIN avion as a ON a.id_avion = v.ref_avion WHERE ref_vol =
 
 if (isset ($_SESSION["id_user"]) && isset($_SESSION["A2F"])) {
     $id = $_SESSION["id_user"];
@@ -26,9 +25,11 @@ if (isset($_GET['depart']) && isset($_GET['destination'])) {
 
 $conn = new SQLConnexion();
 
+
 $req = $conn->conbdd()->prepare("SELECT * FROM vol WHERE date = :aller and classe = :classe and ref_destination = :destination and ref_depart = :depart");
 $req->execute(['aller'=>$_GET['aller'], 'classe'=>$_GET['classe'], "destination"=>$_GET['destination'], 'depart'=>$_GET['depart']]);
 $res = $req->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="fr">
@@ -41,6 +42,7 @@ $res = $req->fetchAll();
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../../assets/css/styleIndex.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- Liens vers les fichiers JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -49,6 +51,66 @@ $res = $req->fetchAll();
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
+
+<div class="content" style="height: 1080px">
+    <table>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Heure de départ</th>
+            <th>Heure d'arrivée</th>
+            <th>Prix</th>
+            <th>Classe</th>
+            <th>Compagnie</th>
+            <th>Départ</th>
+            <th>Destination</th>
+            <th>Réserver</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($res as $row) { ?>
+            <form method="post" action="../../src/controleur/TraitementVol.php">
+
+            <input type="hidden" name="nb" value="<?=$_GET['passager']?>">
+                <input type="hidden" name="type" value="<?=$_GET['type']?>">
+                <input type="hidden" name="dep" value="<?=$_GET['depart']?>">
+                <input type="hidden" name="des" value="<?=$_GET['destination']?>">
+                <input type="hidden" name="retour" value="<?=$_GET['retour']?>">
+                <input type="hidden" name="aller" value="<?=$_GET['aller']?>">
+                <input type="hidden" name="classe" value="<?=$_GET['classe']?>">
+            <tr>
+                <td><?php echo $row['date']; ?></td>
+                <td><?php echo $row['heure_dep']; ?></td>
+                <td><?php echo $row['heure_arr']; ?></td>
+                <td><?php echo $row['prix']; ?></td>
+                <td><?php echo $row['classe']; ?></td>
+                <td><?php echo $row['ref_compagnie']; ?></td>
+                <td><?php echo $row['ref_depart']; ?></td>
+                <td><?php echo $row['ref_destination']; ?></td>
+                <td><?php
+                        $requete = $conn->conbdd()->prepare("SELECT (a.nb_place - SUM(nbr_billet)) AS place_restante FROM `uservol` INNER JOIN vol as v ON ref_vol = v.id_vol INNER JOIN avion as a ON a.id_avion = v.ref_avion WHERE ref_vol = :id");
+                        $requete->execute(['id'=>$row['id_vol']]);
+                        $resu = $requete->fetch();
+
+                        if ($resu['place_restante'] == null) {
+                            ?>
+                            <button class="btn btn-primary" value="<?= $row['id_vol']?>" name="res">Réserver</button>
+                            <?php
+                        } else if ($resu['place_restante'] >= $_GET['passager']) {
+                            ?>
+                            <button class="btn btn-primary" value="<?= $row['id_vol']?>" name="res">Réserver</button>
+                    <?php
+                        } else {
+                            echo "Aucune place disponible". $resu['place_restante'];
+                        }
+                        ?>
+                    </td>
+            </tr>
+        </form>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
 <footer class="text-white bg-dark" style="">
     <div class="container py-4 py-lg-5">
         <div class="row justify-content-center">

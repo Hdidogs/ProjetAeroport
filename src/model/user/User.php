@@ -163,6 +163,7 @@ abstract class User
                     $_SESSION['prenom'] = $userprenom;
                     $_SESSION['mail'] = $usermail;
                     $_SESSION['fonction'] = $fonction;
+                    $_SESSION['compagnie'] = $user['ref_compagnie'];
 
                     header("Location: ../../vue/index.php");
                     return true;
@@ -195,6 +196,7 @@ abstract class User
                     $_SESSION['prenom'] = $userprenom;
                     $_SESSION['mail'] = $usermail;
                     $_SESSION['fonction'] = $fonction;
+                    $_SESSION['compagnie'] = $user['ref_compagnie'];
 
                     header("Location: ../../vue/index.php");
                     return true;

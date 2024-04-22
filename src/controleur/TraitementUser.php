@@ -28,10 +28,13 @@ if (array_key_exists("connexion", $_POST)) {
             $user->inscription();
         }
     }
-} if (array_key_exists("deconnexion", $_POST)) {
+} else if (array_key_exists("pauser", $_POST)) {
+    $conn = new SQLConnexion();
     session_start();
-    session_destroy();
 
-    header("Location: ../../vue/connexion.php");
+    $req = $conn->conbdd()->prepare("INSERT INTO `conge`(`date_debut`, `date_fin`, `ref_user`) VALUES (:dated, :datef, :user)");
+    $req->execute(['dated'=>$_POST['debut'], 'datef'=>$_POST['fin'],'user'=>$_SESSION['id_user']]);
+
+    header("Location: ../../vue/index.php");
 }
 ?>

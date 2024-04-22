@@ -45,6 +45,7 @@ $resv = $reqv->fetchAll();
 
 <body>
     <div class="content">
+        <!--
         <div class="carousel slide" data-bs-ride="false" id="carousel-1">
             <div class="carousel-inner">
                 <div class="carousel-item active"><img class="w-100 d-block" src="../assets/images/58796297-43317668.jpg"
@@ -64,6 +65,7 @@ $resv = $reqv->fetchAll();
                     data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1"
                     data-bs-slide-to="2"></button></div>
         </div>
+        -->
 
         <section id="prochain" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
             <div class="container position-relative">
@@ -168,7 +170,7 @@ $resv = $reqv->fetchAll();
             </div>
         </div>
 
-        <section id="section" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
+        <section id="reservation" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
             <div class="container position-relative">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -187,8 +189,8 @@ $resv = $reqv->fetchAll();
                                 <tbody>
                                     <tr>
                                         <td><select class="form-vol-select" name="type" id="type" required>
-                                                <option>Aller - Retour</option>
-                                                <option>Aller Simple</option>
+                                                <option value="ar">Aller - Retour</option>
+                                                <option value="as">Aller Simple</option>
                                             </select></td>
                                         <td><select class="form-vol-select" name="classe" id="classe" required>
                                                 <option>Economique</option>
@@ -323,7 +325,6 @@ $resv = $reqv->fetchAll();
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" style="color: black;"
                             href="#reservation">Réservation</a></li>
-                    <li class="nav-item"><a class="nav-link active" style="color: black;" href="#vols">Vols</a></li>
                     <li class="nav-item"><a class="nav-link active" style="color: black;" href="#services">Services</a>
                     </li>
                     <li class="nav-item"><a class="nav-link active" style="color: black;"
@@ -453,6 +454,14 @@ $resv = $reqv->fetchAll();
                                     <li><a class="dropdown-item" href="panelAdministrateur.php">Panel Administration</a>
                                     </li>
                                     <?php
+                                } else if ($_SESSION['fonction'] == 3) {
+                                    ?>
+                                    <li><a class="dropdown-item" href="panelCompagnie.php">Panel Compagnie</a></li>
+                                    <?php
+                                } else if ($_SESSION['fonction'] == 2) {
+                                    ?>
+                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#vacance">Vacances</a></li>
+                                    <?php
                                 }
                                 ?>
                                 <li>
@@ -471,6 +480,39 @@ $resv = $reqv->fetchAll();
             </div>
         </div>
     </nav>
+
+    <div class="modal fade" id="vacance" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Pauser des Vacances</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../src/controleur/TraitementUser.php">
+                    <div class="modal-body">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th><label class="text-form" for="debut">Date de Début</label></th>
+                                <th><label class="text-form" for="fin">Date de Fin</label></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="date" name="debut" id="debut" required></td>
+                                <td><input type="date" name="fin" id="fin" required></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="pauser">Pauser</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <script>
     $(document).ready( function () {
         $('#volList').DataTable();

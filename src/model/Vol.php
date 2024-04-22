@@ -1,6 +1,6 @@
 <?php
 
-include "../../bdd/SQLConnexion.php";
+include "../bdd/SQLConnexion.php";
 
 class Vol
 {
@@ -212,15 +212,11 @@ class Vol
         $req->execute(array('id' => $id));
     }
 
-    public static function mettreAJourVol($id, $destination, $date, $company, $allerRetour, $depart, $arrivee, $billet, $nombreBillet)
+    public static function modifierVol($id, $depart, $arrivee, $billet, $nombreBillet)
     {
         $bdd = new SQLConnexion();
-        $req = $bdd->conbdd()->prepare('UPDATE vol SET destination = :destination, date = :date, company = :company, allerRetour = :allerRetour, depart = :depart, arrivee = :arrivee, billet = :billet, nombreBillet = :nombreBillet WHERE id = :id');
+        $req = $bdd->conbdd()->prepare('UPDATE vol SET depart = :depart, arrivee = :arrivee, billet = :billet, nombreBillet = :nombreBillet WHERE id_vol = :id');
         $req->execute(array(
-            'destination' => $destination,
-            'date' => $date,
-            'company' => $company,
-            'allerRetour' => $allerRetour,
             'depart' => $depart,
             'arrivee' => $arrivee,
             'billet' => $billet,
@@ -243,6 +239,17 @@ class Vol
             'billet' => $billet,
             'nombreBillet' => $nombreBillet,
             'id' => $id
+        ));
+    }
+
+    public static function reserveVol($id_user, $id_vol, $nb)
+    {
+        $bdd = new SQLConnexion();
+        $req = $bdd->conbdd()->prepare('INSERT INTO uservol (ref_user, ref_vol, nbr_billet) VALUES (:user, :vol, :nb)');
+        $req->execute(array(
+            'user' => $id_user,
+            'vol' => $id_vol,
+            'nb' => $nb,
         ));
     }
 }
