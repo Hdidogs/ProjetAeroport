@@ -4,9 +4,12 @@ session_start();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Reset Password</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/mdpresetcss.css">
 </head>
+
 <body>
     <h2>Reset Password</h2>
     <form action="../../src/controleur/ResetMdp.php" method="post">
@@ -15,4 +18,5 @@ session_start();
         <input type="submit" value="Submit">
     </form>
 </body>
+
 </html>
