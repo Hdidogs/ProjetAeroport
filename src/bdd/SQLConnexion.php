@@ -1,5 +1,6 @@
 <?php
-class SQLConnexion{
+class SQLConnexion
+{
     private $bdd;
     private $serveur = "localhost";
     private $nomBdd = "projetaeroport";
@@ -7,12 +8,13 @@ class SQLConnexion{
     private $password = "";
 
 
-    public function __construct() {
-        $this->bdd =  new PDO('mysql:host='.$this->serveur.';dbname='.$this->nomBdd, $this->username, $this->password);
+    public function __construct()
+    {
+        $this->bdd = new PDO('mysql:host=' . $this->serveur . ';dbname=' . $this->nomBdd, $this->username, $this->password);
     }
 
     public function conbdd(): PDO
     {
-       return $this->bdd;
+        return $this->bdd;
     }
 }

@@ -36,5 +36,10 @@ if (array_key_exists("connexion", $_POST)) {
     $req->execute(['dated'=>$_POST['debut'], 'datef'=>$_POST['fin'],'user'=>$_SESSION['id_user']]);
 
     header("Location: ../../vue/index.php");
+} else if (array_key_exists("deconnexion", $_POST)) {
+    session_start();
+    session_destroy();
+
+    header("Location: ../../vue/connexion.php");
 }
 ?>
