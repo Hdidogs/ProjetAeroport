@@ -446,7 +446,7 @@ $resv = $reqv->fetchAll();
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light text-small"
                                 style="box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;border-top-left-radius: 15px;border-top-right-radius: 15px;border: none;">
-                                <li><a class="dropdown-item" href="#">Votre Compte</a></li>
+                                <li><a class="dropdown-item" href="votreCompte.php">Votre Compte</a></li>
                                 <?php
                                 if ($_SESSION['fonction'] == 4) {
                                     ?>
