@@ -17,6 +17,9 @@ $conn = new SQLConnexion();
 
 $req = $conn->conbdd()->query("SELECT * FROM v_aeroport");
 $res = $req->fetchAll();
+
+$reqv = $conn->conbdd()->query("SELECT * FROM listvol");
+$resv = $reqv->fetchAll();
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="fr">
@@ -62,8 +65,40 @@ $res = $req->fetchAll();
                     data-bs-slide-to="2"></button></div>
         </div>
 
-        <section id="vols" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
-
+        <section id="prochain" class="position-relative py-4 py-xl-5" style="background: var(--bs-body-bg); ">
+            <div class="container position-relative">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="text fw-bold m-0" style="color: black;">Prochain Départ</h6>
+                    </div>
+                    <table id="volList">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Heure de Départ</th>
+                            <th>Heure d'arriver</th>
+                            <th>Nom de l'Aéroport</th>
+                            <th>Nom de la compagnie</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($resv as $vol) {
+                            ?>
+                            <tr>
+                                <td><?=$vol['date']?></td>
+                                <td><?=$vol['heure_dep']?></td>
+                                <td><?=$vol['heure_arr']?></td>
+                                <td><?=$vol['nom_aeroport']?></td>
+                                <td><?=$vol['nom']?></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
 
         <div id="services" class="card-group" style="margin: 15px;">
@@ -264,7 +299,7 @@ $res = $req->fetchAll();
                     <li class="nav-item"><a class="nav-link active" style="color: black;" href="#services">Services</a>
                     </li>
                     <li class="nav-item"><a class="nav-link active" style="color: black;"
-                            href="vol/prochainVol.php">Prochain Départ</a></li>
+                            href="#prochain">Prochain Départ</a></li>
                     <li class="nav-item">
                         <div class="dropdown" style="margin-top: -5px">
                             <a href="#"
@@ -409,6 +444,9 @@ $res = $req->fetchAll();
         </div>
     </nav>
 <script>
+    $(document).ready( function () {
+        $('#volList').DataTable();
+    } );
     $('#destination').select2({
         selectOnClose: true
     });
