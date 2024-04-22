@@ -225,20 +225,16 @@ class Vol
         ));
     }
 
-    public static function ajoutVol($destination, $date, $company, $allerRetour, $depart, $arrivee, $billet, $nombreBillet, $id)
+
+    public static function ajouterVol(string $depart, string $arrivee, string $billet, string $nombreBillet)
     {
         $bdd = new SQLConnexion();
-        $req = $bdd->conbdd()->prepare('INSERT INTO vol (destination, date, company, allerRetour, depart, arrivee, billet, nombreBillet, id) VALUES (:destination, :date, :company, :allerRetour, :depart, :arrivee, :billet, :nombreBillet, :id)');
+        $req = $bdd->conbdd()->prepare('INSERT INTO vol(depart, arrivee, billet, nombreBillet) VALUES(:depart, :arrivee, :billet, :nombreBillet)');
         $req->execute(array(
-            'destination' => $destination,
-            'date' => $date,
-            'company' => $company,
-            'allerRetour' => $allerRetour,
             'depart' => $depart,
             'arrivee' => $arrivee,
             'billet' => $billet,
-            'nombreBillet' => $nombreBillet,
-            'id' => $id
+            'nombreBillet' => $nombreBillet
         ));
     }
 
